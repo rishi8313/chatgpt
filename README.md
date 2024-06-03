@@ -1,4 +1,3 @@
-# chatgpt
 ## Instructions to install
 First download python3.9 package from internet
 
