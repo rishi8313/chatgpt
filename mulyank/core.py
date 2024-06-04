@@ -1,5 +1,4 @@
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
 from langchain.chains.router.llm_router import LLMRouterChain
 from langchain.chains import create_sql_query_chain
 from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
@@ -10,7 +9,6 @@ import time
 from .prompts import router_prompt,query_mapping
 from .response import OUTPUT_TEMPLATES
 
-load_dotenv()
 
 class OutputFormatter:
 
