@@ -35,9 +35,24 @@ Currently it is to keep {H}.
     input_variables=["H"],
     output_parser=None)
 
+debt_market_view_ot = PromptTemplate(
+    template="""
+Current Debt score is {I}. One should go in {K}
+""",
+    input_variables=["I","K"],
+output_parser = None)
+
+large_cap_allocation_ot = PromptTemplate(
+    template="""
+At current juncture : Allocation in Large cap should be {Q} %.
+""",
+input_variables=["Q"],
+output_parser=None)
 
 OUTPUT_TEMPLATES = {
     "market_scenario": market_scenario_ot,
     "capital_allocation": capital_allocation_ot,
-    "investment_advice_prompt_template" : investment_advice_ot
+    "investment_advice" : investment_advice_ot,
+    "debt_market_view" : debt_market_view_ot,
+    "large_cap_allocation":large_cap_allocation_ot
 }

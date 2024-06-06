@@ -6,8 +6,8 @@ from langchain_community.utilities import SQLDatabase
 import sqlite3
 import os
 import time
-from .prompts import router_prompt,query_mapping
 from .response import OUTPUT_TEMPLATES
+from mulyank.prompt_builder import QueryBuilder, RouterBuilder
 
 
 class OutputFormatter:
@@ -24,10 +24,12 @@ class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
         llm = ChatOpenAI(api_key=api_key)
+        query_bldr = QueryBuilder()
+        router_bldr = RouterBuilder()
         db = SQLDatabase.from_uri(db_loc)
         self.write_query = create_sql_query_chain(llm, db)
-        self.router_chain = LLMRouterChain.from_llm(llm, router_prompt)
-        self.query_mapping = query_mapping
+        self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
+        self.query_mapping = query_bldr.get_query_mapping()
         self.basic_question_list = ["greetings","mulyankan_working","event_handling" ,"future_question"]
 
 

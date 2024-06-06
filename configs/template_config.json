@@ -1,0 +1,49 @@
+{
+    "prompt_infos": [
+        {
+            "name": "greetings",
+            "kind": "Predefined",
+            "description": "Basic greetings from user, eg. Hi, Hello etc."
+        },
+        {
+            "name": "mulyankan_working",
+            "kind": "Predefined",
+            "description": "Basic working of mulyankan gpt, eg. how mulyankan gpt works?"
+        },
+        {
+            "name": "event_handling",
+            "kind": "Predefined",
+            "description": "Effect of events, eg. According to you, how will the global warming impact the stocks, What do you think of XYZ event?/What is your election prediction?"
+        },
+        {
+            "name": "future_question",
+            "kind": "Predefined",
+            "description": "Answers any question asked in future tense or asking for a prediction, eg. how market will behave, How will global warming impact?"
+        },
+        {
+            "name": "market_scenario",
+            "kind": "prompt_helper",
+            "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores"
+        },
+        {
+            "name": "capital_allocation",
+            "kind": "prompt_helper",
+            "description": "Asset Allocation Details. Eg. What should be my capital allocation / Broader Asset allocation based on Current market ?"
+        },
+        {
+            "name": "investment_advice",
+            "kind": "prompt_helper",
+            "description": "Investment Advice. Eg. Do I go for lumsum or Staggered investment/stp at current juncture ? when the system has last told to STOP STP and go into Equity ?"
+        },
+        {
+            "name": "debt_market_view",
+            "kind": "prompt_helper",
+            "description": "Debt Market View, Eg. What is current debt market view/allocation ? Broader View on Indian Debt ?"
+        },
+        {
+            "name": "large_cap_allocation",
+            "kind" : "prompt_helper",
+            "description":"Large cap allocation, Eg. What should be Large cap allocation in overall portfolio ?"
+        }
+    ]
+}
