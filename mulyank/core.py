@@ -40,23 +40,26 @@ class QueryHandler:
             return OutputFormatter(destination_key).format(response)
 
     def handle_questions(self, state):
-        user_message = state.messages[-1]["content"].lower()
-        destination_key = self.router_chain.invoke({"input": user_message})["destination"]
-        query = self.query_mapping[destination_key]
-        if type(query) != str:
-            query = query.format(question = user_message)
-            sql_query = self.write_query.invoke({"question": query})
-            print(sql_query)
-            conn = sqlite3.connect("db/mulyank.db")
-            c = conn.cursor()
-            c.execute(sql_query)
-            response = c.fetchall()
-            conn.commit()
-            conn.close()
-        else:
-            response = self.query_mapping[destination_key]
+        try:
+            user_message = state.messages[-1]["content"].lower()
+            destination_key = self.router_chain.invoke({"input": user_message})["destination"]
+            query = self.query_mapping[destination_key]
+            if type(query) != str:
+                query = query.format(question = user_message)
+                sql_query = self.write_query.invoke({"question": query})
+                print(sql_query)
+                conn = sqlite3.connect("db/mulyank.db")
+                c = conn.cursor()
+                c.execute(sql_query)
+                response = c.fetchall()
+                conn.commit()
+                conn.close()
+            else:
+                response = self.query_mapping[destination_key]
 
-        response = self.format_response(response, destination_key)
+            response = self.format_response(response, destination_key)
+        except:
+            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
         for word in response.split():
             time.sleep(0.05)
