@@ -46,10 +46,10 @@ class QueryBuilder:
     def manage_block(self, block):
         columns = block["columns"]
         table_name = block["table_name"]
-        prefix = "Get value of"
-        columns_str = ",".join(columns)
+        prefix = block["prefix"]
+        columns_str = ", ".join(columns)
         mid_sec = " from "
-        template = PROMPT_PREFIX + "\n" + prefix + columns_str + mid_sec + table_name
+        template = PROMPT_PREFIX + "\n" + prefix + " " + columns_str + mid_sec + table_name
         return template
 
     def handle_predefined(self, name):

@@ -13,17 +13,23 @@ from mulyank.prompt_builder import QueryBuilder, RouterBuilder
 class OutputFormatter:
 
     def __init__(self, destination_key):
-        self.template = OUTPUT_TEMPLATES[destination_key]
+        self.template = OUTPUT_TEMPLATES[destination_key][0]
+        self.aggregation = OUTPUT_TEMPLATES[destination_key][1]
 
+    def apply(self, agg, res):
+        if agg == "add":
+            return sum(res)
+    
     def format(self, response):
+        if self.aggregation != None:
+            response = [[self.apply(self.aggregation, response[0])]]
         inputs = {key:val for key, val in zip(self.template.input_variables, response[0])}
-        print(inputs)
         return self.template.format(**inputs)
 
 class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
-        llm = ChatOpenAI(api_key=api_key)
+        llm = ChatOpenAI(api_key=api_key, temperature=0,seed = 0)
         query_bldr = QueryBuilder()
         router_bldr = RouterBuilder()
         db = SQLDatabase.from_uri(db_loc)
@@ -37,6 +43,7 @@ class QueryHandler:
         if destination_key in self.basic_question_list:
             return response
         else:
+            print(response)
             return OutputFormatter(destination_key).format(response)
 
     def handle_questions(self, state):
@@ -44,10 +51,10 @@ class QueryHandler:
             user_message = state.messages[-1]["content"].lower()
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
             query = self.query_mapping[destination_key]
+            print(query)
             if type(query) != str:
                 query = query.format(question = user_message)
                 sql_query = self.write_query.invoke({"question": query})
-                print(sql_query)
                 conn = sqlite3.connect("db/mulyank.db")
                 c = conn.cursor()
                 c.execute(sql_query)

@@ -49,10 +49,28 @@ At current juncture : Allocation in Large cap should be {Q} %.
 input_variables=["Q"],
 output_parser=None)
 
+sm_cap_alloc_cur_ot = PromptTemplate(
+    template="""
+At current juncture : Allocation in MID & SMALL CAP  should be {R + S} %.
+""",
+input_variables=["R","S"],
+output_parser=None
+)
+
+sm_cap_alloc_cur_past = PromptTemplate(
+    template="""
+System suggestion was {R} & {S}
+""",
+input_variables=["R","S"],
+output_parser=None
+)
+
 OUTPUT_TEMPLATES = {
-    "market_scenario": market_scenario_ot,
-    "capital_allocation": capital_allocation_ot,
-    "investment_advice" : investment_advice_ot,
-    "debt_market_view" : debt_market_view_ot,
-    "large_cap_allocation":large_cap_allocation_ot
+    "market_scenario": [market_scenario_ot, None],
+    "capital_allocation": [capital_allocation_ot, None],
+    "investment_advice" : [investment_advice_ot, None],
+    "debt_market_view" : [debt_market_view_ot, None],
+    "large_cap_allocation":[large_cap_allocation_ot,None],
+    "small_mid_cap_allocation_current":[sm_cap_alloc_cur_ot,"add"],
+    "small_mid_cap_allocation_past":[sm_cap_alloc_cur_past,None]
 }

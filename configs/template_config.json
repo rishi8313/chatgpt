@@ -44,6 +44,16 @@
             "name": "large_cap_allocation",
             "kind" : "prompt_helper",
             "description":"Large cap allocation, Eg. What should be Large cap allocation in overall portfolio ?"
+        },
+        {
+            "name": "small_mid_cap_allocation_current",
+            "kind" : "prompt_helper",
+            "description":"What should be Mid and Small Cap allocation in current portfolio ?"
+        },
+        {
+            "name": "small_mid_cap_allocation_past",
+            "kind":"prompt_helper",
+            "description":"What should be Mid and Small Cap allocation in April 2023 ?"
         }
     ]
 }
