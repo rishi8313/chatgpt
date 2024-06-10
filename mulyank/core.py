@@ -1,13 +1,14 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains.router.llm_router import LLMRouterChain
 from langchain.chains import create_sql_query_chain
+from langchain.chains.llm import LLMChain
 from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
 from langchain_community.utilities import SQLDatabase
 import sqlite3
 import os
 import time
 from .response import OUTPUT_TEMPLATES
-from mulyank.prompt_builder import QueryBuilder, RouterBuilder
+from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT
 
 
 class OutputFormatter:
@@ -21,6 +22,7 @@ class OutputFormatter:
             return sum(res)
     
     def format(self, response):
+        print(response)
         if self.aggregation != None:
             response = [[self.apply(self.aggregation, response[0])]]
         inputs = {key:val for key, val in zip(self.template.input_variables, response[0])}
@@ -37,37 +39,49 @@ class QueryHandler:
         self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
         self.query_mapping = query_bldr.get_query_mapping()
         self.basic_question_list = ["greetings","mulyankan_working","event_handling" ,"future_question"]
+        self.output_chain = LLMChain(llm = llm, prompt=OUTPUT_PROMPT)
 
 
     def format_response(self, response, destination_key):
         if destination_key in self.basic_question_list:
             return response
         else:
-            print(response)
             return OutputFormatter(destination_key).format(response)
 
+
+    def run_query(self, sql_query):
+        conn = sqlite3.connect("db/mulyank.db")
+        c = conn.cursor()
+        c.execute(sql_query)
+        response = c.fetchall()
+        conn.commit()
+        conn.close()
+        return response
+        
     def handle_questions(self, state):
         try:
             user_message = state.messages[-1]["content"].lower()
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
             query = self.query_mapping[destination_key]
-            print(query)
             if type(query) != str:
                 query = query.format(question = user_message)
                 sql_query = self.write_query.invoke({"question": query})
-                conn = sqlite3.connect("db/mulyank.db")
-                c = conn.cursor()
-                c.execute(sql_query)
-                response = c.fetchall()
-                conn.commit()
-                conn.close()
+                sql_query = sql_query.replace("```","")
+                print("*******")
+                print(sql_query)
+                print("*******")
+                
+                response = self.run_query(sql_query)
+                response = self.format_response(response, destination_key)
+                response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
             else:
                 response = self.query_mapping[destination_key]
+                response = self.format_response(response, destination_key)
 
-            response = self.format_response(response, destination_key)
+            
         except:
             response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
-        for word in response.split():
+        for word in response.split("\n"):
             time.sleep(0.05)
-            yield word + " "
+            yield word + "\n"

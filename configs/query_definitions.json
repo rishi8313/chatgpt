@@ -10,23 +10,23 @@
             "Blended Distilled Score",
             "Shiller score",
             "buffet score",
-            "Broader Guidance - Inference for Limited Action Advisor looking for both Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance - Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Un-favourable zone"
+            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
+            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
         ],
         "table_name": "fact_sheet"
     },
     "capital_allocation": {
         "prefix":"Get value of",
         "columns": [
-            "Broader Guidance - Inference for Limited Action Advisor looking for both Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance - Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Un-favourable zone"
+            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
+            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
         ],
         "table_name": "fact_sheet"
     },
     "investment_advice": {
         "prefix":"Get value of",
         "columns": [
-            "Broader Guidance - Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Un-favourable zone"
+            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
         ],
         "table_name": "fact_sheet"
     },

@@ -4,19 +4,36 @@ from langchain.chains.router.multi_prompt_prompt import MULTI_PROMPT_ROUTER_TEMP
 from langchain.prompts import PromptTemplate
 from langchain.chains.router.llm_router import RouterOutputParser
 
-PROMPT_PREFIX = """Answer the following question
+# PROMPT_PREFIX = """Answer the following question
+
+# {question}
+
+# While creating the sql query, remember the following points
+# Remember : Always convert date provided in the question to datetime sql type while generating sql query.
+# Remember : Always use strftime date time matching for dates.
+# Remember : use the latest date present in database convert it to strftime format to match, If date, month or year is not mentioned in the question, 
+# Remember : If only month and year is mentioned, then take an Mean of whole month for the given year and provide the value
+# Remember : If only year is mentioned, then take an average of whole year and provide the value
+# Remember : If data, month and year all 3 are mentioned, then get the value for the exact date from the date column which is a datetime type column
+# Remember : To round off the values upto 2 decimal points only.
+# by providing the following information.
+
+# """
+PROMPT_PREFIX = """
+Create an SQL query that adheres to these guidelines:
+
+1. Always convert any given date in the question to the datetime SQL type.
+2. Use the `strftime` function to match dates.
+3. If the date (day, month, year) isn’t fully specified:
+   - Use the latest date in the database in the `strftime` format. Refrain to use date('now') to get the latest date.
+   - If only the month and year are mentioned, compute the mean value for the entire month in the specified year.
+   - If only the year is mentioned, calculate the average value for the entire year.
+   - If the full date (day, month, and year) is provided, extract the value for the precise date from the datetime column.
+4. Round off numerical values to 2 decimal points.
+
+Provide the information as requested:
 
 {question}
-
-While creating the sql query, remember the following points
-Remember : Always convert date provided in the question to datetime sql type while generating sql query.
-Remember : Always use strftime date time matching for dates.
-Remember : If date, month or year is not mentioned in the question, use the latest date present in database convert it to strftime format to match
-Remember : If only month and year is mentioned, then take an Mean of whole month for the given year and provide the value
-Remember : If only year is mentioned, then take an average of whole year and provide the value
-Remember : If data, month and year all 3 are mentioned, then get the value for the exact date from the date column which is a datetime type column
-Remember : To round off the values upto 2 decimal points only.
-by providing the following information.
 
 """
 
@@ -99,3 +116,25 @@ class RouterBuilder:
 
     def get_router_prompt(self):
         return self.router_prompt
+    
+
+out_template = """ ### Tips for Crafting a Human-Readable Response: ###
+
+- Use a conversational tone that is easy to comprehend
+- Clearly present any numerical or factual information in bulletpoints
+- seperate the facts by next line character ("\n")
+- encircle headings in bold
+- Explain the insights as if I am 5 years old
+
+As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details.
+
+### Query : ###
+{query}
+
+### Response: ###  
+{response}
+
+### Rewritten Response: ###
+"""
+
+OUTPUT_PROMPT = PromptTemplate(template=out_template, input_variables=["query", "response"])

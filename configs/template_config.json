@@ -23,7 +23,7 @@
         {
             "name": "market_scenario",
             "kind": "prompt_helper",
-            "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores"
+            "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores, e.g. How is the market condition? market kesa h?"
         },
         {
             "name": "capital_allocation",
