@@ -41,6 +41,11 @@
             "description": "Debt Market View, Eg. What is current debt market view/allocation ? Broader View on Indian Debt ?"
         },
         {
+            "name": "debt_allocation",
+            "kind": "prompt_helper",
+            "description": "Debt allocation, eg. Current debt allocation, What should be specific allocation in Debt ? Where should I put my money in Debt ? What should be my allocation in 10 year gsec bsed on interest rate cycle."
+        },
+        {
             "name": "large_cap_allocation",
             "kind" : "prompt_helper",
             "description":"Large cap allocation, Eg. What should be Large cap allocation in overall portfolio ?"
@@ -54,6 +59,11 @@
             "name": "small_mid_cap_allocation_past",
             "kind":"prompt_helper",
             "description":"What should be Mid and Small Cap allocation in April 2023 ?"
+        },
+        {
+            "name":"equity_decision",
+            "kind":"prompt_helper",
+            "description":"Answer question related to equity, Ok tell me what shall I do in Equity ? "
         }
     ]
 }

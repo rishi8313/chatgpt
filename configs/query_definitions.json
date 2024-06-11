@@ -38,6 +38,14 @@
         ],
         "table_name": "fact_sheet"
     },
+    "debt_allocation":{
+        "prefix":"Get value of",
+        "columns":[
+            "Long Term Debt Ratio",
+            "Short Term Debt Ratio"
+        ],
+        "table_name": "fact_sheet"
+    },
     "large_cap_allocation":{
         "prefix":"Get value of",
         "columns":[
@@ -60,5 +68,13 @@
             "SmallCap allocation"
         ],
         "table_name": "fact_sheet"
+    },
+    "equity_decision":{
+        "prefix" :"Get value of",
+        "columns":[
+            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
+            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+        ],
+        "table_name":"fact_sheet"
     }
 }
