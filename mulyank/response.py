@@ -64,7 +64,7 @@ input_variables=["R","S"],
 output_parser=None
 )
 
-sm_cap_alloc_cur_past = PromptTemplate(
+sm_cap_alloc_cur_past_ot = PromptTemplate(
     template="""
 System suggestion was {R} & {S}
 """,
@@ -72,12 +72,28 @@ input_variables=["R","S"],
 output_parser=None
 )
 
-equity_decision_out = PromptTemplate(
+sml_cap_alloc_ot = PromptTemplate(
+    template="""
+At current juncture : Allocation in Large cap should be {Q}%, Midcap should be {R}% , small cap should be {S}%.
+""",
+input_variables=["Q","R","S"],
+output_parser=None)
+
+equity_decision_ot = PromptTemplate(
     template="""
 Broader inference for Limited action advisor is ( Looking for Entry & Exit ) to {F}.
 Broader inference for Minimalistic action advisor is ( Looking for Entry but will never Sell ) to {H}
 """,
 input_variables=["F","H"],
+output_parser=None
+)
+
+equity_debt_decision_ot = PromptTemplate(
+    template="""Broader inference for Limited action advisor is ( Looking for Entry & Exit ) to {F}. 
+    Broader inference for Minimalistic action advisor is ( Looking for Entry but will never Sell ) to {H}. 
+    Invest {L}% of your Debt money in Long term Debt and {M}% of your debt money in Short term Debt.
+""",
+input_variables=["F","H","L","M"],
 output_parser=None
 )
 
@@ -89,6 +105,8 @@ OUTPUT_TEMPLATES = {
     "debt_allocation" : [debt_allocation_ot, None],
     "large_cap_allocation":[large_cap_allocation_ot,None],
     "small_mid_cap_allocation_current":[sm_cap_alloc_cur_ot,"add"],
-    "small_mid_cap_allocation_past":[sm_cap_alloc_cur_past,None],
-    "equity_decision":[equity_decision_out,None]
+    "small_mid_cap_allocation_past":[sm_cap_alloc_cur_past_ot,None],
+    "small_mid_large_cap_allocation":[sml_cap_alloc_ot, None],
+    "equity_decision":[equity_decision_ot,None],
+    "equity_debt_decision":[equity_debt_decision_ot,None]
 }

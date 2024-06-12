@@ -31,7 +31,7 @@ class OutputFormatter:
 class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
-        llm = ChatOpenAI(api_key=api_key, temperature=0,seed = 0)
+        llm = ChatOpenAI(api_key=api_key, temperature=0, seed = 0)
         query_bldr = QueryBuilder()
         router_bldr = RouterBuilder()
         db = SQLDatabase.from_uri(db_loc)
@@ -39,7 +39,8 @@ class QueryHandler:
         self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
         self.query_mapping = query_bldr.get_query_mapping()
         self.basic_question_list = ["greetings","mulyankan_working","event_handling" ,"future_question"]
-        self.output_chain = LLMChain(llm = llm, prompt=OUTPUT_PROMPT)
+        llm1 = ChatOpenAI(api_key=api_key, temperature=0.7, seed = 0)
+        self.output_chain = LLMChain(llm = llm1, prompt=OUTPUT_PROMPT)
 
 
     def format_response(self, response, destination_key):

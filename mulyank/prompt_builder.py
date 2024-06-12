@@ -23,13 +23,13 @@ PROMPT_PREFIX = """
 Create an SQL query that adheres to these guidelines:
 
 1. Always convert any given date in the question to the datetime SQL type.
-2. Use the `strftime` function to match dates.
-3. If the date (day, month, year) isn’t fully specified:
+2. If date is not provided, consider it as latest scenario.
+3. Use the `strftime` function to match dates.
+4. If the date (day, month, year) isn’t fully specified:
    - Use the latest date in the database in the `strftime` format. Refrain to use date('now') to get the latest date.
    - If only the month and year are mentioned, compute the mean value for the entire month in the specified year.
    - If only the year is mentioned, calculate the average value for the entire year.
    - If the full date (day, month, and year) is provided, extract the value for the precise date from the datetime column.
-4. Round off numerical values to 2 decimal points.
 
 Provide the information as requested:
 

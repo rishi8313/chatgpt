@@ -4,7 +4,7 @@
     "event_handling": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
     "future_question": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
     "market_scenario": {
-        "prefix":"Get value of",
+        "prefix": "Get value of",
         "columns": [
             "Valuation Distilled Score",
             "Blended Distilled Score",
@@ -16,7 +16,7 @@
         "table_name": "fact_sheet"
     },
     "capital_allocation": {
-        "prefix":"Get value of",
+        "prefix": "Get value of",
         "columns": [
             "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
             "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
@@ -24,57 +24,76 @@
         "table_name": "fact_sheet"
     },
     "investment_advice": {
-        "prefix":"Get value of",
+        "prefix": "Get value of",
         "columns": [
             "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
         ],
         "table_name": "fact_sheet"
     },
-    "debt_market_view":{
-        "prefix":"Get value of",
-        "columns":[
+    "debt_market_view": {
+        "prefix": "Get value of",
+        "columns": [
             "Debt Score",
             "Broader Inference From Debt Score"
         ],
         "table_name": "fact_sheet"
     },
-    "debt_allocation":{
-        "prefix":"Get value of",
-        "columns":[
+    "debt_allocation": {
+        "prefix": "Get value of",
+        "columns": [
             "Long Term Debt Ratio",
             "Short Term Debt Ratio"
         ],
         "table_name": "fact_sheet"
     },
-    "large_cap_allocation":{
-        "prefix":"Get value of",
-        "columns":[
+    "large_cap_allocation": {
+        "prefix": "Get value of",
+        "columns": [
             "Large Cap allocation"
         ],
         "table_name": "fact_sheet"
     },
-    "small_mid_cap_allocation_current":{
-        "prefix":"Get value of",
-        "columns":[
+    "small_mid_cap_allocation_current": {
+        "prefix": "Get value of",
+        "columns": [
             "Midcap allocation",
             "SmallCap allocation"
         ],
         "table_name": "fact_sheet"
     },
-    "small_mid_cap_allocation_past":{
-        "prefix":"Get value of",
-        "columns":[
+    "small_mid_cap_allocation_past": {
+        "prefix": "Get value of",
+        "columns": [
             "Midcap allocation",
             "SmallCap allocation"
         ],
         "table_name": "fact_sheet"
     },
-    "equity_decision":{
-        "prefix" :"Get value of",
-        "columns":[
+    "small_mid_large_cap_allocation": {
+        "prefix": "Get value of",
+        "columns": [
+            "Large Cap allocation",
+            "Midcap allocation",
+            "SmallCap allocation"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "equity_decision": {
+        "prefix": "Get value of",
+        "columns": [
             "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
             "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
+    },
+    "equity_debt_decision": {
+        "prefix": "Get value of",
+        "columns": [
+            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
+            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone",
+            "Long Term Debt Ratio",
+            "Short Term Debt Ratio"
+        ],
+        "table_name": "fact_sheet"
     }
 }

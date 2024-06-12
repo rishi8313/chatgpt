@@ -61,9 +61,19 @@
             "description":"What should be Mid and Small Cap allocation in April 2023 ?"
         },
         {
+            "name":"small_mid_large_cap_allocation",
+            "kind":"prompt_helper",
+            "description":"What should be specific allocation in Large , Mid and Small cap as per current Score / Give me allocation plan / What % should I maintain in Large , Mid and small ? Give me ideal allocation in all caps - i.e large , mid & small  ? How much should I keep in all 3 ?"
+        },
+        {
             "name":"equity_decision",
             "kind":"prompt_helper",
             "description":"Answer question related to equity, Ok tell me what shall I do in Equity ? "
+        },
+        {
+            "name":"equity_debt_decision",
+            "kind":"prompt_helper",
+            "description":"What is your view on Equity and debt market of india ? Give me the action plan , what shall I do ?"
         }
     ]
 }
