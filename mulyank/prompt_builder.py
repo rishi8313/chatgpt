@@ -138,3 +138,7 @@ As an expert in crafting prompts for large language models, your task is to enha
 """
 
 OUTPUT_PROMPT = PromptTemplate(template=out_template, input_variables=["query", "response"])
+
+input_prompt = """translate to english {message}"""
+
+IN_PROMPT = PromptTemplate(template=input_prompt, input_variables=["message"])

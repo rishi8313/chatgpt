@@ -8,7 +8,7 @@ import sqlite3
 import os
 import time
 from .response import OUTPUT_TEMPLATES
-from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT
+from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT
 
 
 class OutputFormatter:
@@ -32,6 +32,7 @@ class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
         llm = ChatOpenAI(api_key=api_key, temperature=0, seed = 0)
+        self.translate_chain = LLMChain(llm = llm, prompt=IN_PROMPT)
         query_bldr = QueryBuilder()
         router_bldr = RouterBuilder()
         db = SQLDatabase.from_uri(db_loc)
@@ -62,6 +63,8 @@ class QueryHandler:
     def handle_questions(self, state):
         try:
             user_message = state.messages[-1]["content"].lower()
+            user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
+            print(user_message)
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
             query = self.query_mapping[destination_key]
             if type(query) != str:
