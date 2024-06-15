@@ -97,6 +97,58 @@ input_variables=["F","H","L","M"],
 output_parser=None
 )
 
+market_fall_undervalue_ot = PromptTemplate(
+    template="""We don’t believe in prediction. We help you prepare thorugh current assessment of score. If Valuation + Business cycle score are below 5.75, market has very limited downside in the absence of any six-sigma event. Along with that if Fine tuner ( Shiller + Buffet ) are green its a time to sell everything and BUY EQUITY.  
+    Broader inference for Limited action advisor is ( Looking for Entry & Exit ) to {F}. Broader inference for Minimalistic action advisor is ( Looking for Entry but will never Sell ) to keep {H}.
+    """,
+input_variables=["F","H"],
+output_parser=None
+)
+
+market_up_overvalue_ot = PromptTemplate(
+    template="""We don’t believe in prediction. We help you prepare thorugh current assessment of score. If Valuation + Business cycle score are above 6. Along with that if Fine tuner ( Shiller + Buffet ) are Red its a time to start selling and underweight Equity.
+    Broader inference for Limited action advisor is ( Looking for Entry & Exit ) to {F}. Broader inference for Minimalistic action advisor is ( Looking for Entry but will never Sell ) to keep {H}.
+    """,
+input_variables=["F","H"],
+output_parser=None
+)
+
+current_market_value_ot = PromptTemplate(
+    template=""" Market get Over-valued when inference is to Under-weight Equity and get Undervalued when broader inference is to Over-weight Equity and during Neutral Equity it becomes Fairly-valued. 
+    Current scores for Valuation & Business cycle is {B} & {C} Respectively.  
+    Broader inference for Limited action advisor is ( Looking for Entry & Exit ) to {F}. 
+    Broader inference for Minimalistic action advisor is ( Looking for Entry but will never Sell ) to keep {H}.
+    """,
+input_variables=["B","C","F","H"],
+output_parser=None
+)
+
+backtesting_broader_guidance_ot = PromptTemplate(
+    template="""{G}""",
+input_variables=["G"],
+output_parser=None
+)
+
+debt_allocation_back_testing_ot = PromptTemplate(
+    template="""{J}""",
+input_variables=["J"],
+output_parser=None
+)
+
+mid_small_cap_current_view_ot = PromptTemplate(
+    template="""Current Score for Midcap is {O}. 
+    Current Score for Smallcap is {P}. 
+    0 means no action. 
+    Below -50 means Go underweight in Mid and Small cap. 
+    Above  50 means Go overweight in Mid & Small cap. 
+    Eg : If I have 20 % Portfolio in MIDCAP And score is showing -50. Than allocation will be 10 % in Midcap. 
+    If i have a portfolio of 20 % in Midcap and  If Midcap score is 100, than allocation will be 40 % in Micdap. 
+    Similarly calculation for Small cap.  """,
+input_variables=["O","P"],
+output_parser=None
+)
+
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, None],
     "capital_allocation": [capital_allocation_ot, None],
@@ -108,5 +160,11 @@ OUTPUT_TEMPLATES = {
     "small_mid_cap_allocation_past":[sm_cap_alloc_cur_past_ot,None],
     "small_mid_large_cap_allocation":[sml_cap_alloc_ot, None],
     "equity_decision":[equity_decision_ot,None],
-    "equity_debt_decision":[equity_debt_decision_ot,None]
+    "equity_debt_decision":[equity_debt_decision_ot,None],
+    "market_fall_undervalue":[market_fall_undervalue_ot,None],
+    "market_up_overvalue":[market_up_overvalue_ot, None],
+    "current_market_value":[current_market_value_ot,None],
+    "backtesting_broader_guidance":[backtesting_broader_guidance_ot, None],
+    "debt_allocation_back_testing":[debt_allocation_back_testing_ot,None],
+    "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None]
 }

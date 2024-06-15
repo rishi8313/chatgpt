@@ -18,8 +18,11 @@ class OutputFormatter:
         self.aggregation = OUTPUT_TEMPLATES[destination_key][1]
 
     def apply(self, agg, res):
+        print(res)
         if agg == "add":
             return sum(res)
+        elif agg == "concat":
+            return " ".join(res)
     
     def format(self, response):
         print(response)
@@ -39,17 +42,8 @@ class QueryHandler:
         self.write_query = create_sql_query_chain(llm, db)
         self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
         self.query_mapping = query_bldr.get_query_mapping()
-        self.basic_question_list = ["greetings","mulyankan_working","event_handling" ,"future_question"]
         llm1 = ChatOpenAI(api_key=api_key, temperature=0.7, seed = 0)
         self.output_chain = LLMChain(llm = llm1, prompt=OUTPUT_PROMPT)
-
-
-    def format_response(self, response, destination_key):
-        if destination_key in self.basic_question_list:
-            return response
-        else:
-            return OutputFormatter(destination_key).format(response)
-
 
     def run_query(self, sql_query):
         conn = sqlite3.connect("db/mulyank.db")
@@ -66,7 +60,9 @@ class QueryHandler:
             user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
             print(user_message)
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
+            print(destination_key)
             query = self.query_mapping[destination_key]
+            print(query)
             if type(query) != str:
                 query = query.format(question = user_message)
                 sql_query = self.write_query.invoke({"question": query})
@@ -76,16 +72,16 @@ class QueryHandler:
                 print("*******")
                 
                 response = self.run_query(sql_query)
-                response = self.format_response(response, destination_key)
+                response = OutputFormatter(destination_key).format(response)
                 response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
             else:
                 response = self.query_mapping[destination_key]
-                response = self.format_response(response, destination_key)
-
             
         except:
             response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
-        for word in response.split("\n"):
-            time.sleep(0.05)
-            yield word + "\n"
+        for sentence in response.split("\n"):
+            for word in sentence.split(" "):
+                time.sleep(0.05)
+                yield word + " "
+            yield "\n"

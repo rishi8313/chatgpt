@@ -30,7 +30,7 @@ Create an SQL query that adheres to these guidelines:
    - If only the month and year are mentioned, compute the mean value for the entire month in the specified year.
    - If only the year is mentioned, calculate the average value for the entire year.
    - If the full date (day, month, and year) is provided, extract the value for the precise date from the datetime column.
-
+5. If the question starts with "when", strictly refrain to select date as column, you could still use date in filter or for ordering purpose
 Provide the information as requested:
 
 {question}
@@ -139,6 +139,10 @@ As an expert in crafting prompts for large language models, your task is to enha
 
 OUTPUT_PROMPT = PromptTemplate(template=out_template, input_variables=["query", "response"])
 
-input_prompt = """translate to english {message}"""
+input_prompt = """translate the message to english, if not in english, else replicate the message in the output
+Remember : STP is systematic investment plan, so please don't translate it to stop.
+
+###message###
+{message}"""
 
 IN_PROMPT = PromptTemplate(template=input_prompt, input_variables=["message"])
