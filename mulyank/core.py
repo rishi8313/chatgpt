@@ -57,6 +57,7 @@ class QueryHandler:
     def handle_questions(self, state):
         try:
             user_message = state.messages[-1]["content"].lower()
+            print(user_message)
             user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
             print(user_message)
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]

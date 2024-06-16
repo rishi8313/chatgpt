@@ -139,10 +139,18 @@ As an expert in crafting prompts for large language models, your task is to enha
 
 OUTPUT_PROMPT = PromptTemplate(template=out_template, input_variables=["query", "response"])
 
-input_prompt = """translate the message to english, if not in english, else replicate the message in the output
-Remember : STP is systematic investment plan, so please don't translate it to stop.
+input_prompt = """As a fluent multilingual translator, your task is to accurately translate the following message to English:
 
-###message###
-{message}"""
+### Instruction: Translate the message below to English ###
+
+### Message ###
+{message}
+
+Ensure that the translation captures the precise meaning and tone of the original message. Aim for clarity and fluency in the translated text to effectively convey the intended message.
+
+---------
+Translated Message: 
+
+---------"""
 
 IN_PROMPT = PromptTemplate(template=input_prompt, input_variables=["message"])
