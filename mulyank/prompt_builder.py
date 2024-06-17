@@ -146,8 +146,6 @@ input_prompt = """As a fluent multilingual translator, your task is to accuratel
 ### Message ###
 {message}
 
-Ensure that the translation captures the precise meaning and tone of the original message. Aim for clarity and fluency in the translated text to effectively convey the intended message.
-
 ---------
 Translated Message: 
 
