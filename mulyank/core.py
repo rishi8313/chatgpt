@@ -54,7 +54,7 @@ class QueryHandler:
         return response
         
     def handle_questions(self, state):
-        try:
+        #try:
             user_message = state.messages[-1]["content"].lower()
             print(user_message)
             user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
@@ -83,11 +83,11 @@ class QueryHandler:
             else:
                 response = self.query_mapping[destination_key]
             
-        except:
-            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
+        #except:
+        #    response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
-        for sentence in response.split("\n"):
-            for word in sentence.split(" "):
-                time.sleep(0.05)
-                yield word + " "
-            yield "\n"
+            for sentence in response.split("\n"):
+                for word in sentence.split(" "):
+                    time.sleep(0.05)
+                    yield word + " "
+                yield "\n"
