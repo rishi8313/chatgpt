@@ -13,23 +13,23 @@
             "Blended Distilled Score",
             "Shiller score",
             "buffet score",
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name": "fact_sheet"
     },
     "capital_allocation": {
         "prefix": "Get value of",
         "columns": [
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name": "fact_sheet"
     },
     "investment_advice": {
         "prefix": "Get value of",
         "columns": [
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name": "fact_sheet"
     },
@@ -84,16 +84,16 @@
     "equity_decision": {
         "prefix": "Get value of",
         "columns": [
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name": "fact_sheet"
     },
     "equity_debt_decision": {
         "prefix": "Get value of",
         "columns": [
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone",
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy",
             "Long Term Debt Ratio",
             "Short Term Debt Ratio"
         ],
@@ -102,16 +102,16 @@
     "market_fall_undervalue":{
         "prefix": "Get value of",
         "columns":[
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name":"fact_sheet"
     },
     "market_up_overvalue":{
         "prefix": "Get value of",
         "columns":[
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name":"fact_sheet"
     },
@@ -120,8 +120,8 @@
         "columns":[
             "Valuation Distilled Score",
             "Blended Distilled Score",
-            "Broader Guidance and Inference for Limited Action Advisor looking for both  Favourable zone to enter and Unfavourable Zone to exit",
-            "Broader Guidance and Inference for Minimalistic Action Advisor looking for ONLY Favourable zone to enter Equity and will run STP in Unfavourable zone"
+            "Advisory guidance for entry and exit zones",
+            "Equity entry guidance with stop-loss strategy"
         ],
         "table_name":"fact_sheet"
     },
