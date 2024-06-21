@@ -46,9 +46,11 @@ class QueryHandler:
         self.output_chain = LLMChain(llm = llm1, prompt=OUTPUT_PROMPT)
 
     def run_query(self, sql_query):
+        response = "Not able to connect to mulyankan database at this moment"
         conn = create_engine(self.db_connection_str)
-        c = conn.execute(sql_query)
-        response = c.fetchall()
+        if conn:
+            c = conn.execute(sql_query)
+            response = c.fetchall()
         return response
         
     def handle_questions(self, state):
