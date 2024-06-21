@@ -4,9 +4,10 @@ from sqlalchemy import create_engine
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from sqlalchemy import text
 
 if not load_dotenv("/etc/secrets/.env"):
-    load_dotenv("mulyank/etc/secrets/.env")
+    load_dotenv("etc/secrets/.env")
 
 def main():
     st.set_page_config(initial_sidebar_state='expanded', page_title='Mulyankan GPT', page_icon=":moneybag:", layout="wide")
@@ -44,10 +45,13 @@ subscription's content.</h5>""", unsafe_allow_html=True)
         if st.button("Update"):
             db_connection_str = os.environ["DB_CONNECTION_STR"]
             db_connection = create_engine(db_connection_str)
-            db_connection.execute("DROP TABLE fact_sheet")
-            with st.spinner("Updating"):
-                data.to_sql(name = "fact_sheet", con = db_connection)
-            st.write("Data updated in Database")
+
+            engine = create_engine(db_connection_str)
+            with engine.connect() as conn:
+                conn.execute(text("DROP TABLE fact_sheet"))
+                with st.spinner("Updating"):
+                    data.to_sql(name = "fact_sheet", con = db_connection)
+                st.write("Data updated in Database")
 
 if __name__ == "__main__":
     main()
