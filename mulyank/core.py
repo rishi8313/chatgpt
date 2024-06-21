@@ -9,6 +9,7 @@ from .response import OUTPUT_TEMPLATES
 from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from sqlalchemy import text
 
 class OutputFormatter:
 
@@ -49,7 +50,7 @@ class QueryHandler:
         response = "Not able to connect to mulyankan database at this moment"
         engine = create_engine(self.db_connection_str)
         with engine.connect() as conn:
-            result = conn.execute(sql_query)
+            result = conn.execute(text(sql_query))
             response = result.fetchall()
         return response
         
