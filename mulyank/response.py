@@ -148,6 +148,27 @@ input_variables=["O","P"],
 output_parser=None
 )
 
+category_selection_under_debt_ot = PromptTemplate(
+    template = """
+ under Debt, one should invest in {N}
+""",
+input_variables=["N"]
+)
+
+category_selection_under_equity_ot = PromptTemplate(
+    template = """
+Currently under Equity, one should invest in {V}
+""",
+input_variables=["V"]
+)
+
+allocation_reco_no_investor_profile_ot = PromptTemplate(
+    template="""
+Out of 100 rs., One should keep {N} rs in Equity. This {N} rs should go in {V} now. Rest of the money should go in {W}. 
+""",
+input_variables=["N","V","W"]
+)
+
 
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, None],
@@ -166,5 +187,8 @@ OUTPUT_TEMPLATES = {
     "current_market_value":[current_market_value_ot,None],
     "backtesting_broader_guidance":[backtesting_broader_guidance_ot, None],
     "debt_allocation_back_testing":[debt_allocation_back_testing_ot,None],
-    "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None]
+    "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None],
+    "category_selection_under_debt":[category_selection_under_debt_ot, None],
+    "category_selection_under_equity":[category_selection_under_equity_ot, None],
+    "allocation_reco_no_investor_profile":[allocation_reco_no_investor_profile_ot,"frac"]
 }

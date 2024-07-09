@@ -146,5 +146,29 @@
             "Smallcap Minimalistic Score"
         ],
         "table_name":"fact_sheet"
+    },
+    "category_selection_under_debt":{
+        "prefix":"Get value of",
+        "columns":[
+            "Which subcategory under Debt ?"
+        ],
+        "table_name":"fact_sheet"
+    },
+    "category_selection_under_equity":{
+        "prefix":"Get value of",
+        "columns":[
+            "Multi/Flexi For NO PROFILE INVESTOR"
+        ],
+        "table_name":"fact_sheet"
+    },
+    "allocation_reco_no_investor_profile":{
+        "prefix":"Get value of",
+        "columns":[
+            "Equity Allocation For No Profile Investor",
+            "Multi/Flexi For NO PROFILE INVESTOR",
+            "Which subcategory under Debt ?"
+        ],
+        "table_name":"fact_sheet"
+
     }
 }

@@ -119,6 +119,21 @@
             "name": "mid_small_cap_current_view",
             "kind": "prompt_helper",
             "description": "What is your current view on Mid and small cap ? / Current action plan for small & midcap as per Mulyankan gpt ? Are midcap / Small cap Overvalued or Under valued or Fairly valued ?"
+        },
+        {
+            "name": "category_selection_under_debt",
+            "kind" : "prompt_helper",
+            "description" : "Which category to select under Debt ? / What category you recommend now in debt ? What was your Debt category selection/recommendation in 2020 June ?"
+        },
+        {
+            "name": "category_selection_under_equity",
+            "kind" : "prompt_helper",
+            "description" : "Which category to select under Equity ? / What category you recommend now in Equity ? What was your Equity category selection/recommendation in 2020 June ?"
+        },
+        {
+            "name": "allocation_reco_no_investor_profile",
+            "kind" : "prompt_helper",
+            "description" : "My Investor Profile is HNI / NO PROFILE / NO GOAL and No Fixed Time horizon. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for HNI / NO PROFILE / NO GOA AND NO FIXED TIME HORIZON INVESTOR ? What should i do WHO ARE HNI / NO PROFILE / NO GOAL AND NO FIXED TIME HORIZON AT CURRENT MARKET SCENARIO / CONDITION ? What was your allocation recommendation in June 2020 ? I have 50 Lakh rs and my Investor carries NO Profile ? Where should I invest?"
         }
     ]
 }

@@ -21,13 +21,19 @@ class OutputFormatter:
         print(res)
         if agg == "add":
             return sum(res)
+        elif agg == "frac":
+            return (int(res[0]*100), res[1], res[2])
         elif agg == "concat":
             return " ".join(res)
     
     def format(self, response):
         print(response)
         if self.aggregation != None:
-            response = [[self.apply(self.aggregation, response[0])]]
+            agg_resp = self.apply(self.aggregation, response[0])
+            if type(agg_resp) is str or type(agg_resp) is int or type(agg_resp) is float:
+                response = [[agg_resp]]
+            elif type(agg_resp) is tuple or type(agg_resp) is list:
+                response = [agg_resp]
         inputs = {key:val for key, val in zip(self.template.input_variables, response[0])}
         print(inputs)
         return self.template.format(**inputs)

@@ -22,9 +22,10 @@ from langchain.chains.router.llm_router import RouterOutputParser
 PROMPT_PREFIX = """
 Create an SQL query that adheres to these guidelines:
 
-1. Always convert any given date in the question to the datetime SQL type.
-2. If date is not provided, consider it as latest scenario.
-3. Use the `strftime` function to match dates.
+1. If date is not provided in the question, consider it as latest scenario and append "current" keyword to the question. 
+eg. a) Which category to select under equity? -> Currently which category to select under equity.
+    b) Which category to select under equity in Jan 2023? -> Which category to select under equity in Jan 2023?
+2. Always convert any given date in the question to the datetime SQL type `strftime` function to match dates.
 4. If the date (day, month, year) isn’t fully specified:
    - Use the latest date in the database in the `strftime` format. Refrain to use date('now') to get the latest date.
    - If only the month and year are mentioned, compute the mean value for the entire month in the specified year.
@@ -126,8 +127,7 @@ out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 - encircle headings in bold
 - Explain the insights as if I am 5 years old
 
-As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details.
-
+As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details. 
 ### Query : ###
 {query}
 
