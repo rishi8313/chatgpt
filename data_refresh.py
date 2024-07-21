@@ -37,8 +37,8 @@ subscription's content.</h5>""", unsafe_allow_html=True)
         columns = list(data.columns)
         columns[5] = "Advisory guidance for entry and exit zones"
         columns[7] = "Equity entry guidance with stop-loss strategy"
-        columns[-14] = "Balanced Withdrawal Strategy"
-        columns[-12] = "Conservative Withdrawal Approach"
+        columns[30] = "Balanced Withdrawal Strategy"
+        columns[32] = "Conservative Withdrawal Approach"
         data.columns = columns
         data = data.round(3)
         st.write(data)
@@ -48,7 +48,10 @@ subscription's content.</h5>""", unsafe_allow_html=True)
 
             engine = create_engine(db_connection_str)
             with engine.connect() as conn:
-                conn.execute(text("DROP TABLE fact_sheet"))
+                try:
+                    conn.execute(text("DROP TABLE fact_sheet"))
+                except:
+                    pass
                 with st.spinner("Updating"):
                     data.to_sql(name = "fact_sheet", con = db_connection)
                 st.write("Data updated in Database")
