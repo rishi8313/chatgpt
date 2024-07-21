@@ -215,11 +215,11 @@ In Small cap space, {AM} are favourable factor.
 
 style_or_factor_all_3_ot = PromptTemplate(
     template="""
-In Large , Mid . Small allocation will be {A} , {B} , {C} respectively .
-In debt allocation should be {D}.
-In large cap space, {E} & {F} are favourable factor.
-In Mid cap space, {G} & {H} are favourable factor.
-In Small cap space, {I} are favourable factor.
+1) In Large , Mid . Small allocation will be {A} , {B} , {C} respectively .
+2) In debt allocation should be {D}.
+3) In large cap space, {E} & {F} are favourable factor.
+4) In Mid cap space, {G} & {H} are favourable factor.
+5) In Small cap space, {I} are favourable factor.
 """,
 input_variables=["A","B","C","D","E","F","G","H","I"]
 )

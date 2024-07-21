@@ -187,7 +187,7 @@
     "moderate_investor_allocation_reco": {
         "prefix": "Get value of",
         "columns": [
-            "Moderate with Limited Rebalancing  & No Debt Category Plus Capital Withdrawal )",
+            "Balanced Withdrawal Strategy",
             "Moderate with Regular Rebalancing",
             "Multi/Flexi For NO PROFILE INVESTOR",
             "Which subcategory under Debt ?"
@@ -197,7 +197,7 @@
     "conservative_investor_allocation_reco": {
         "prefix": "Get value of",
         "columns": [
-            "Conservative withLimited Rebalancing and No Debt Category plus Capital Withdrawal",
+            "Conservative Withdrawal Approach",
             "Which subcategory under Debt ?"
         ],
         "table_name": "fact_sheet"
@@ -214,7 +214,7 @@
         "prefix": "Get value of",
         "columns": [
             "Mid Cap Oriented Style",
-            "Mid Cap Style"
+            "Mid Cap  Style"
         ],
         "table_name": "fact_sheet"
     },
@@ -235,13 +235,13 @@
             "Large Cap Oriented Style",
             "Large Cap Style",
             "Mid Cap Oriented Style",
-            "Mid Cap Style",
+            "Mid Cap  Style",
             "Small Cap Oriented Style"
         ],
         "table_name": "fact_sheet"
     },
     "performance_style_factor_selection": {
-        "prefix": "Get value of",
+        "prefix": "Get value of limit 1",
         "columns": [
             "Large cap Oriented Style Performance",
             "Performance for All Cap Oriented Style Performance "

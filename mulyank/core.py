@@ -30,7 +30,7 @@ class OutputFormatter:
         elif agg == "concat":
             return " ".join(res)
         elif agg == "concat_perf":
-            return " ".join(res)
+            return res
     
     def format(self, response):
         print(response)
@@ -48,7 +48,7 @@ class OutputFormatter:
 class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
-        llm = ChatOpenAI(api_key=api_key, temperature=0, seed = 0)
+        llm = ChatOpenAI(model = "gpt-4o",api_key=api_key, temperature=0, seed = 0)
         self.llm = ChatOpenAI(api_key=api_key, temperature=0, seed = 0)
         self.translate_chain = LLMChain(llm = llm, prompt=IN_PROMPT)
         query_bldr = QueryBuilder()
