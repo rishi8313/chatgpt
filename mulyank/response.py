@@ -168,7 +168,71 @@ Out of 100 rs., One should keep {N} rs in Equity. This {N} rs should go in {V} n
 """,
 input_variables=["N","V","W"]
 )
+aggressive_investor_allocation_reco_ot = PromptTemplate(
+    template="""
+Out of 100 rs For Aggressive All In investor, one should keep {A} Rs in Equity. 
+Out of 100 rs For Aggressive All IN & All OUT investor, one should keep {B} Rs in Equity.
+Out of 100 rs For Aggressive with Regular Re-balancing investor, one should keep {C} Rs in Equity.
+Equity Money for Aggressive profile will go in {D}.
+Debt Money should go in {E}.
+Large , Mid and Small cap allocation will be {F}, {G} , {H} respectively out of 100 rs in Equity.
+    """, 
+    input_variables=["A","B","C","D","E","F","G","H"]
+    )
 
+moderate_investor_allocation_reco_ot = PromptTemplate(
+    template="""Out of 100 rs Moderate with Limited Rebalancing  & No Debt Category or looking for Capital Withdrawal investor, should keep {AE}. 
+    Out of 100 Rs. For Moderate with regular rebalanacing investor , {AF} rs should go in Equity. 
+    This Equity money should go in {V} now.
+    Debt money should go in {N}.
+    """, 
+    input_variables=["AE","AF","V","N"]
+    )
+conservative_investor_allocation_reco_ot = PromptTemplate(
+    template="""Out of 100 rs Moderate with Limited Rebalancing  & No Debt Category or looking for Capital Withdrawal investor, should keep in {AG}. 
+    Conservative investor looking only for Debt category should go in {N}.
+    """, 
+    input_variables=["AG","N"]
+    )
+style_or_factor_sel_large_cap_ot = PromptTemplate(
+    template="""
+In large cap space, {AH} & {AI} are favourable factor.
+    """, 
+    input_variables=["AH","AI"]
+    )
+style_or_factor_sel_mid_cap_ot = PromptTemplate(
+    template="""
+In Mid cap space, {AK} & {AL} are favourable factor.
+    """, 
+    input_variables=["AK","AL"]
+    )
+style_or_factor_sel_small_cap_ot = PromptTemplate(
+    template="""
+In Small cap space, {AM} are favourable factor.
+    """, 
+    input_variables=["AM"]
+    )
+
+style_or_factor_all_3_ot = PromptTemplate(
+    template="""
+In Large , Mid . Small allocation will be {A} , {B} , {C} respectively .
+In debt allocation should be {D}.
+In large cap space, {E} & {F} are favourable factor.
+In Mid cap space, {G} & {H} are favourable factor.
+In Small cap space, {I} are favourable factor.
+""",
+input_variables=["A","B","C","D","E","F","G","H","I"]
+)
+
+
+performance_style_factor_selection_ot = PromptTemplate(
+    template="""
+In a large cap oriented style performance , {AJ}. 
+In ALL CAP Oriented style performance , {AR}.
+No one knows Financial market future performance. On 5 year Rolling basis, 99.9 % Probability that its Risk - adjusted performance would be better than most of the advisory Fraternity doing allocation across
+    """, 
+    input_variables=["AJ","AR"]
+    )
 
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, None],
@@ -190,5 +254,13 @@ OUTPUT_TEMPLATES = {
     "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None],
     "category_selection_under_debt":[category_selection_under_debt_ot, None],
     "category_selection_under_equity":[category_selection_under_equity_ot, None],
-    "allocation_reco_no_investor_profile":[allocation_reco_no_investor_profile_ot,"frac"]
+    "allocation_reco_no_investor_profile":[allocation_reco_no_investor_profile_ot,"frac"],
+    "aggressive_investor_allocation_reco": [aggressive_investor_allocation_reco_ot,"frac_aggr"],
+    "moderate_investor_allocation_reco": [moderate_investor_allocation_reco_ot,None],
+    "conservative_investor_allocation_reco": [conservative_investor_allocation_reco_ot,None],
+    "style_or_factor_sel_large_cap": [style_or_factor_sel_large_cap_ot,None],
+    "style_or_factor_sel_mid_cap": [style_or_factor_sel_mid_cap_ot, None],
+    "style_or_factor_sel_small_cap": [style_or_factor_sel_small_cap_ot, None],
+    "style_or_factor_all_3":[style_or_factor_all_3_ot, None],
+    "performance_style_factor_selection": [performance_style_factor_selection_ot, "concat_perf"]
 }

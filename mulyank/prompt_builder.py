@@ -22,16 +22,17 @@ from langchain.chains.router.llm_router import RouterOutputParser
 PROMPT_PREFIX = """
 Create an SQL query that adheres to these guidelines:
 
-1. If date is not provided in the question, consider it as latest scenario and append "current" keyword to the question. 
+##Important Guidelines to follow
+1. Whenever a question includes a date, always convert that date to the datetime format using SQL's DATEFORMAT function to ensure consistency in date matching.
+2. If date is not provided in the question, consider it as latest scenario and append "current" keyword to the question. 
 eg. a) Which category to select under equity? -> Currently which category to select under equity.
     b) Which category to select under equity in Jan 2023? -> Which category to select under equity in Jan 2023?
-2. Always convert any given date in the question to the datetime SQL type `strftime` function to match dates.
-4. If the date (day, month, year) isn’t fully specified:
+3. If the date (day, month, year) isn’t fully specified:
    - Use the latest date in the database in the `strftime` format. Refrain to use date('now') to get the latest date.
    - If only the month and year are mentioned, compute the mean value for the entire month in the specified year.
    - If only the year is mentioned, calculate the average value for the entire year.
    - If the full date (day, month, and year) is provided, extract the value for the precise date from the datetime column.
-5. If the question starts with "when", strictly refrain to select date as column, you could still use date in filter or for ordering purpose
+4. If the question starts with "when", strictly refrain to select date as column, you could still use date in filter or for ordering purpose
 Provide the information as requested:
 
 {question}

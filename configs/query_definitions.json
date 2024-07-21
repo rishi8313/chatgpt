@@ -3,9 +3,9 @@
     "mulyankan_working": "Studying Band theory of Valuation based on Past data does not work. Our system further calculate derived values of 20 + time-tested metric through lens of data science. Mulyankan GPT deeply study Valuation and Business cycle through Structured framework and advanced algorithm. It gives guidance on the basis of Where we are Standing in the Cycle/Zone.",
     "event_handling": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
     "future_question": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
-    "future_performance_debt":"No one knows Financial market future performance. Two important aspect of Wealth Management Arena : 1. Risk Control 2. Return Optimization. Mulyankan Platform will strive to outperform 99.9% of MFD/Advisory/Wealth Manager fraternity in above two aspect due to its structured process and system which doesnot depend upon narrative/event/market levels. ",
-    "future_performance_market_cap":"No one knows Financial market future performance. On 5 year Rolling basis, 99.9 % Probability that its Risk - adjusted performance would be better than most of the advisory Fraternity doing allocation across market cap bsed on Narrative or guesswork. ",
-    "mid_small_large_cap_back_testing":"Allocation Ratio has given return of Midcap in Long run but Downside Participation similar to Nifty 50.",
+    "future_performance_debt": "No one knows Financial market future performance. Two important aspect of Wealth Management Arena : 1. Risk Control 2. Return Optimization. Mulyankan Platform will strive to outperform 99.9% of MFD/Advisory/Wealth Manager fraternity in above two aspect due to its structured process and system which doesnot depend upon narrative/event/market levels. ",
+    "future_performance_market_cap": "No one knows Financial market future performance. On 5 year Rolling basis, 99.9 % Probability that its Risk - adjusted performance would be better than most of the advisory Fraternity doing allocation across market cap bsed on Narrative or guesswork. ",
+    "mid_small_large_cap_back_testing": "Allocation Ratio has given return of Midcap in Long run but Downside Participation similar to Nifty 50.",
     "market_scenario": {
         "prefix": "Get value of",
         "columns": [
@@ -99,76 +99,153 @@
         ],
         "table_name": "fact_sheet"
     },
-    "market_fall_undervalue":{
+    "market_fall_undervalue": {
         "prefix": "Get value of",
-        "columns":[
+        "columns": [
             "Advisory guidance for entry and exit zones",
             "Equity entry guidance with stop-loss strategy"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "market_up_overvalue":{
+    "market_up_overvalue": {
         "prefix": "Get value of",
-        "columns":[
+        "columns": [
             "Advisory guidance for entry and exit zones",
             "Equity entry guidance with stop-loss strategy"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "current_market_value":{
+    "current_market_value": {
         "prefix": "Get value of",
-        "columns":[
+        "columns": [
             "Valuation Distilled Score",
             "Blended Distilled Score",
             "Advisory guidance for entry and exit zones",
             "Equity entry guidance with stop-loss strategy"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "backtesting_broader_guidance":{
+    "backtesting_broader_guidance": {
         "prefix": "concatenate the unique non empty value of",
-        "columns":[
+        "columns": [
             "Performance For Broader Inference for  Limited Action Advisor"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "debt_allocation_back_testing":{
-        "prefix":"concatenate the unique non empty value of",
-        "columns":[
+    "debt_allocation_back_testing": {
+        "prefix": "concatenate the unique non empty value of",
+        "columns": [
             "Performance for Minimalistic Debt Score"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "mid_small_cap_current_view":{
-        "prefix":"Get value of",
-        "columns":[
+    "mid_small_cap_current_view": {
+        "prefix": "Get value of",
+        "columns": [
             "Midcap Minimalistic Score",
             "Smallcap Minimalistic Score"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "category_selection_under_debt":{
-        "prefix":"Get value of",
-        "columns":[
+    "category_selection_under_debt": {
+        "prefix": "Get value of",
+        "columns": [
             "Which subcategory under Debt ?"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "category_selection_under_equity":{
-        "prefix":"Get value of",
-        "columns":[
+    "category_selection_under_equity": {
+        "prefix": "Get value of",
+        "columns": [
             "Multi/Flexi For NO PROFILE INVESTOR"
         ],
-        "table_name":"fact_sheet"
+        "table_name": "fact_sheet"
     },
-    "allocation_reco_no_investor_profile":{
-        "prefix":"Get value of",
-        "columns":[
+    "allocation_reco_no_investor_profile": {
+        "prefix": "Get value of",
+        "columns": [
             "Equity Allocation For No Profile Investor",
             "Multi/Flexi For NO PROFILE INVESTOR",
             "Which subcategory under Debt ?"
         ],
-        "table_name":"fact_sheet"
-
+        "table_name": "fact_sheet"
+    },
+    "aggressive_investor_allocation_reco": {
+        "prefix": "Get value of",
+        "columns": [
+            "Aggressive for All In",
+            "Aggressive for All in and All out",
+            "Aggressive  with Regular Rebalancing",
+            "Multi Flexi Mid Small For Aggressive Investor",
+            "Which subcategory under Debt ?",
+            "Large Cap allocation For Aggressive Investor",
+            "Midcap allocation For Aggressive Investor",
+            "SmallCap allocation For Aggressive Investor"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "moderate_investor_allocation_reco": {
+        "prefix": "Get value of",
+        "columns": [
+            "Moderate with Limited Rebalancing  & No Debt Category Plus Capital Withdrawal )",
+            "Moderate with Regular Rebalancing",
+            "Multi/Flexi For NO PROFILE INVESTOR",
+            "Which subcategory under Debt ?"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "conservative_investor_allocation_reco": {
+        "prefix": "Get value of",
+        "columns": [
+            "Conservative withLimited Rebalancing and No Debt Category plus Capital Withdrawal",
+            "Which subcategory under Debt ?"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "style_or_factor_sel_large_cap": {
+        "prefix": "Get value of",
+        "columns": [
+            "Large Cap Oriented Style",
+            "Large Cap Style"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "style_or_factor_sel_mid_cap": {
+        "prefix": "Get value of",
+        "columns": [
+            "Mid Cap Oriented Style",
+            "Mid Cap Style"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "style_or_factor_sel_small_cap": {
+        "prefix": "Get value of",
+        "columns": [
+            "Small Cap Oriented Style"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "style_or_factor_all_3":{
+        "prefix": "Get value of",
+        "columns":[
+            "Adjusted Large Style Allocation",
+            "Adjusted Mid Style Allocation",	
+            "Adjusted Small Style Allocation",
+            "Debt Allocation",
+            "Large Cap Oriented Style",
+            "Large Cap Style",
+            "Mid Cap Oriented Style",
+            "Mid Cap Style",
+            "Small Cap Oriented Style"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "performance_style_factor_selection": {
+        "prefix": "Get value of",
+        "columns": [
+            "Large cap Oriented Style Performance",
+            "Performance for All Cap Oriented Style Performance "
+        ],
+        "table_name": "fact_sheet"
     }
 }

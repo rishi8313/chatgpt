@@ -23,7 +23,13 @@ class OutputFormatter:
             return sum(res)
         elif agg == "frac":
             return (int(res[0]*100), res[1], res[2])
+        elif agg == "frac_aggr":
+            out = [int(res[0]*100), int(res[1] * 100), int(res[2]*100)]
+            out.extend(res[3:])
+            return out
         elif agg == "concat":
+            return " ".join(res)
+        elif agg == "concat_perf":
             return " ".join(res)
     
     def format(self, response):
@@ -34,6 +40,7 @@ class OutputFormatter:
                 response = [[agg_resp]]
             elif type(agg_resp) is tuple or type(agg_resp) is list:
                 response = [agg_resp]
+        print(self.template.input_variables)
         inputs = {key:val for key, val in zip(self.template.input_variables, response[0])}
         print(inputs)
         return self.template.format(**inputs)
