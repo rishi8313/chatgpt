@@ -4,12 +4,27 @@ from langchain.chains import create_sql_query_chain
 from langchain.chains.llm import LLMChain
 from langchain_community.utilities import SQLDatabase
 import sqlite3
+from langchain.cache import InMemoryCache
+from langchain.globals import set_llm_cache
+
 import time
 from .response import OUTPUT_TEMPLATES
 from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy import text
+from langchain.callbacks.base import BaseCallbackHandler
+set_llm_cache(InMemoryCache())
+
+
+class StreamHandler(BaseCallbackHandler):
+    def __init__(self, container, initial_text=""):
+        self.container = container
+        self.text = initial_text
+
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        self.text += token
+        self.container.markdown(self.text)
 
 class OutputFormatter:
 
@@ -56,7 +71,7 @@ class QueryHandler:
         router_bldr = RouterBuilder()
         self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
         self.query_mapping = query_bldr.get_query_mapping()
-        llm1 = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0.7, seed = 0)
+        llm1 = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0.3, seed = 0)
         self.output_chain = LLMChain(llm = llm1, prompt=OUTPUT_PROMPT)
 
     def run_query(self, sql_query):
@@ -68,6 +83,7 @@ class QueryHandler:
         return response
         
     def handle_questions(self, state):
+        
         try:
             user_message = state.messages[-1]["content"].lower()
             print(user_message)

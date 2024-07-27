@@ -183,10 +183,10 @@ Large , Mid and Small cap allocation will be {F}, {G} , {H} respectively out of 
 moderate_investor_allocation_reco_ot = PromptTemplate(
     template="""Out of 100 rs Moderate with Limited Rebalancing  & No Debt Category or looking for Capital Withdrawal investor, should keep {AE}. 
     Out of 100 Rs. For Moderate with regular rebalanacing investor , {AF} rs should go in Equity. 
-    This Equity money should go in {V} now.
-    Debt money should go in {N}.
+    This Equity money should go in {N} now.
+    Debt money should go in {V}.
     """, 
-    input_variables=["AE","AF","V","N"]
+    input_variables=["AE","AF","N","V"]
     )
 conservative_investor_allocation_reco_ot = PromptTemplate(
     template="""Out of 100 rs Moderate with Limited Rebalancing  & No Debt Category or looking for Capital Withdrawal investor, should keep in {AG}. 

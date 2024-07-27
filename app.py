@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 from mulyank.utils import generate_response
-
+import copy
 
 def main():
     st.set_page_config(initial_sidebar_state='expanded', page_title='Mulyankan GPT', page_icon=":moneybag:", layout="wide")

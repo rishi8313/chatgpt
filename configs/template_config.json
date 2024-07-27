@@ -18,7 +18,7 @@
         {
             "name": "future_question",
             "kind": "Predefined",
-            "description": "Answers any question asked in future tense or asking for a prediction, eg. how market will behave, How will global warming impact?"
+            "description": "Answers any question asked in future tense or asking for a prediction eg. What will be future performance ? What is future performance for MARINA / STYLE / FACTOR SELECTION  ?"
         },
         {
             "name": "mid_small_large_cap_back_testing",
@@ -129,6 +129,11 @@
             "name": "category_selection_under_equity",
             "kind" : "prompt_helper",
             "description" : "Which category to select under Equity ? / What category you recommend now in Equity ? What was your Equity category selection/recommendation in 2020 June ?"
+        },
+        {
+            "name":"back_testing_no_profile",
+            "kind":"Predefined",
+            "description":"What is performance / result / back testing of no profile if allocation was implemented as per you / system ?"
         },
         {
             "name": "allocation_reco_no_investor_profile",

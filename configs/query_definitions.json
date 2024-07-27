@@ -2,10 +2,11 @@
     "greetings": "Hi..!! I am Mulyankan GPT. How may I help you today?",
     "mulyankan_working": "Studying Band theory of Valuation based on Past data does not work. Our system further calculate derived values of 20 + time-tested metric through lens of data science. Mulyankan GPT deeply study Valuation and Business cycle through Structured framework and advanced algorithm. It gives guidance on the basis of Where we are Standing in the Cycle/Zone.",
     "event_handling": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
-    "future_question": "Mulyankan GPT doesnot base its guidance on news, event analysis or by studying absolute level of indices like Sensex or NIFTY.",
+    "future_question": "No one knows Financial market future performance. Two important aspect of Wealth Management Arena : 1. Risk Control 2. Return Optimization. Mulyankan Platform will strive to outperform 99.9% of MFD/Advisory/Wealth Manager fraternity in above two aspect due to its structured process and system which doesnot depend upon narrative/event/market levels. ",
     "future_performance_debt": "No one knows Financial market future performance. Two important aspect of Wealth Management Arena : 1. Risk Control 2. Return Optimization. Mulyankan Platform will strive to outperform 99.9% of MFD/Advisory/Wealth Manager fraternity in above two aspect due to its structured process and system which doesnot depend upon narrative/event/market levels. ",
     "future_performance_market_cap": "No one knows Financial market future performance. On 5 year Rolling basis, 99.9 % Probability that its Risk - adjusted performance would be better than most of the advisory Fraternity doing allocation across market cap bsed on Narrative or guesswork. ",
     "mid_small_large_cap_back_testing": "Allocation Ratio has given return of Midcap in Long run but Downside Participation similar to Nifty 50.",
+    "back_testing_no_profile": "This Investor Profile don’t have specific goal and time-horizon. Only goal is Multiplication of investment in Medium to Long run. Market downside capture will be approx 60% and Upside capture would be 85% Post tax on 5 Year rolling basis. Frequncy of re-balancing would be 12-14 time in journey of 15 Year. ",
     "market_scenario": {
         "prefix": "Get value of",
         "columns": [
