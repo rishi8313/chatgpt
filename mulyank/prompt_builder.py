@@ -127,7 +127,8 @@ out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 - Clearly present any numerical or factual information in bulletpoints
 - seperate the facts by next line character ("\n")
 - encircle headings in bold
-- Do not brag about your capability
+- Refrain to brag about your capability
+- Refrain to provide unnecessary explanations
 
 As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details. 
 ### Query : ###

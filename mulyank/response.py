@@ -235,7 +235,7 @@ No one knows Financial market future performance. On 5 year Rolling basis, 99.9 
     )
 
 OUTPUT_TEMPLATES = {
-    "market_scenario": [market_scenario_ot, None],
+    "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
     "investment_advice" : [investment_advice_ot, None],
     "debt_market_view" : [debt_market_view_ot, None],
@@ -256,7 +256,7 @@ OUTPUT_TEMPLATES = {
     "category_selection_under_equity":[category_selection_under_equity_ot, None],
     "allocation_reco_no_investor_profile":[allocation_reco_no_investor_profile_ot,"frac"],
     "aggressive_investor_allocation_reco": [aggressive_investor_allocation_reco_ot,"frac_aggr"],
-    "moderate_investor_allocation_reco": [moderate_investor_allocation_reco_ot,None],
+    "moderate_investor_allocation_reco": [moderate_investor_allocation_reco_ot,"multiply_100"],
     "conservative_investor_allocation_reco": [conservative_investor_allocation_reco_ot,None],
     "style_or_factor_sel_large_cap": [style_or_factor_sel_large_cap_ot,None],
     "style_or_factor_sel_mid_cap": [style_or_factor_sel_mid_cap_ot, None],

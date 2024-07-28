@@ -34,7 +34,12 @@ class OutputFormatter:
 
     def apply(self, agg, res):
         print(res)
-        if agg == "add":
+        if agg == "convert_to_perc":
+            return (res[0], res[1], float(res[2])*100, 
+                    float(res[3])*100, res[4], res[5])
+        elif agg == "multiply_100":
+            return (res[0], float(res[1])*100, res[2], res[3])
+        elif agg == "add":
             return sum(res)
         elif agg == "frac":
             return (int(res[0]*100), res[1], res[2])
