@@ -124,7 +124,7 @@ class RouterBuilder:
 out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 
 - Use a conversational tone that is easy to comprehend
-- Clearly present any numerical or factual information in bulletpoints
+- Clearly present any numerical or factual information in bulletpoints, always use Indian currency system
 - seperate the facts by next line character ("\n")
 - encircle headings in bold
 - Refrain to brag about your capability
@@ -145,6 +145,7 @@ OUTPUT_PROMPT = PromptTemplate(template=out_template, input_variables=["query", 
 input_prompt = """As a fluent multilingual translator, your task is to accurately translate the following message to English:
 
 ### Instruction: Translate the message below to English ###
+##Remember not to convert currency from lakh to million##
 
 ### Message ###
 {message}

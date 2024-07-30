@@ -3,8 +3,19 @@ import numpy as np
 from mulyank.utils import generate_response
 import copy
 
+
+
 def main():
+    
     st.set_page_config(initial_sidebar_state='expanded', page_title='Mulyankan GPT', page_icon=":moneybag:", layout="wide")
+    st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True)
     cols = st.sidebar.columns([0.4,0.6])
     with cols[0]:
         st.image("icons/Mulyankan_Icon.jpeg", width=100)
@@ -34,17 +45,20 @@ subscription's content.</h5>""", unsafe_allow_html=True)
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
+    avatar = {"user": "icons/user.webp",
+            "assistant" : "icons/bot.webp"}
+
     for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
+        with st.chat_message(message["role"], avatar=avatar[message["role"]]):
             st.markdown(message["content"])
 
     if prompt := st.chat_input("What is the market condition today?", key="chat"):
         st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar=avatar["user"]):
             st.markdown(prompt)
 
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking"):
+        with st.chat_message("assistant", avatar=avatar["assistant"]):
+            with st.spinner("Analyzing"):
                 stream = generate_response(st.session_state)
                 response = st.write_stream(stream)
         st.session_state.messages.append({"role": "assistant", "content": response})
