@@ -226,11 +226,11 @@
         ],
         "table_name": "fact_sheet"
     },
-    "style_or_factor_all_3":{
+    "style_or_factor_all_3": {
         "prefix": "Get value of",
-        "columns":[
+        "columns": [
             "Adjusted Large Style Allocation",
-            "Adjusted Mid Style Allocation",	
+            "Adjusted Mid Style Allocation",
             "Adjusted Small Style Allocation",
             "Debt Allocation",
             "Large Cap Oriented Style",
@@ -246,6 +246,41 @@
         "columns": [
             "Large cap Oriented Style Performance",
             "Performance for All Cap Oriented Style Performance "
+        ],
+        "table_name": "fact_sheet"
+    },
+    "debt_investment_0_1": {
+        "prefix": "Get value of",
+        "columns": [
+            "Zero to 1 Month"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "debt_investment_1_3": {
+        "prefix": "Get value of",
+        "columns": [
+            "1 Month to 3 Month"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "debt_investment_3_6": {
+        "prefix": "Get value of",
+        "columns": [
+            "3 Month to 6 Month"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "debt_investment_6_18": {
+        "prefix": "Get value of",
+        "columns": [
+            "6 Month to 18 Month"
+        ],
+        "table_name": "fact_sheet"
+    },
+    "debt_investment_18+": {
+        "prefix": "Get value of",
+        "columns": [
+            "18 Month and above"
         ],
         "table_name": "fact_sheet"
     }

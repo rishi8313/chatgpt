@@ -16,6 +16,7 @@ from sqlalchemy import text
 from langchain.callbacks.base import BaseCallbackHandler
 set_llm_cache(InMemoryCache())
 
+DEBUG = True
 
 class StreamHandler(BaseCallbackHandler):
     def __init__(self, container, initial_text=""):
@@ -33,7 +34,8 @@ class OutputFormatter:
         self.aggregation = OUTPUT_TEMPLATES[destination_key][1]
 
     def apply(self, agg, res):
-        print(res)
+        if DEBUG:
+            print(res)
         if agg == "convert_to_perc":
             return (res[0], res[1], float(res[2])*100, 
                     float(res[3])*100, res[4], res[5])
@@ -53,16 +55,19 @@ class OutputFormatter:
             return res
     
     def format(self, response):
-        print(response)
+        if DEBUG:
+            print(response)
         if self.aggregation != None:
             agg_resp = self.apply(self.aggregation, response[0])
             if type(agg_resp) is str or type(agg_resp) is int or type(agg_resp) is float:
                 response = [[agg_resp]]
             elif type(agg_resp) is tuple or type(agg_resp) is list:
                 response = [agg_resp]
-        print(self.template.input_variables)
+        if DEBUG:
+            print(self.template.input_variables)
         inputs = {key:val for key, val in zip(self.template.input_variables, response[0])}
-        print(inputs)
+        if DEBUG:
+            print(inputs)
         return self.template.format(**inputs)
 
 class QueryHandler:
@@ -91,13 +96,17 @@ class QueryHandler:
         
         try:
             user_message = state.messages[-1]["content"].lower()
-            print(user_message)
+            if DEBUG:
+                print(user_message)
             user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
-            print(user_message)
+            if DEBUG:
+                print(user_message)
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
-            print(destination_key)
+            if DEBUG:
+                print(destination_key)
             query = self.query_mapping[destination_key]
-            print(query)
+            if DEBUG:
+                print(query)
             if type(query) != str:
                 query = query.format(question = user_message)
                 db = SQLDatabase.from_uri(self.db_connection_str)
@@ -107,12 +116,14 @@ class QueryHandler:
                 sql_query = sql_query.replace("sql\n","")
                 sql_query = sql_query.strip()
                 sql_query = sql_query[sql_query.find("SELECT"):]
-                print("*******")
-                print(sql_query)
-                print("*******")
+                if DEBUG:
+                    print("*******")
+                    print(sql_query)
+                    print("*******")
                 
                 response = self.run_query(sql_query)
-                print(destination_key)
+                if DEBUG:
+                    print(destination_key)
                 response = OutputFormatter(destination_key).format(response)
                 response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
             else:

@@ -122,63 +122,88 @@
         },
         {
             "name": "category_selection_under_debt",
-            "kind" : "prompt_helper",
-            "description" : "Which category to select under Debt ? / What category you recommend now in debt ? What was your Debt category selection/recommendation in 2020 June ?"
+            "kind": "prompt_helper",
+            "description": "Which category to select under Debt ? / What category you recommend now in debt ? What was your Debt category selection/recommendation in 2020 June ?"
         },
         {
             "name": "category_selection_under_equity",
-            "kind" : "prompt_helper",
-            "description" : "Which category to select under Equity ? / What category you recommend now in Equity ? What was your Equity category selection/recommendation in 2020 June ?"
+            "kind": "prompt_helper",
+            "description": "Which category to select under Equity ? / What category you recommend now in Equity ? What was your Equity category selection/recommendation in 2020 June ?"
         },
         {
-            "name":"back_testing_no_profile",
-            "kind":"Predefined",
-            "description":"What is performance / result / back testing of no profile if allocation was implemented as per you / system ?"
+            "name": "back_testing_no_profile",
+            "kind": "Predefined",
+            "description": "What is performance / result / back testing of no profile if allocation was implemented as per you / system ?"
         },
         {
             "name": "allocation_reco_no_investor_profile",
-            "kind" : "prompt_helper",
-            "description" : "My Investor Profile is HNI / NO PROFILE / NO GOAL and No Fixed Time horizon. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for HNI / NO PROFILE / NO GOA AND NO FIXED TIME HORIZON INVESTOR ? What should i do WHO ARE HNI / NO PROFILE / NO GOAL AND NO FIXED TIME HORIZON AT CURRENT MARKET SCENARIO / CONDITION ? What was your allocation recommendation in June 2020 ? I have 50 Lakh rs and my Investor carries NO Profile ? Where should I invest?"
+            "kind": "prompt_helper",
+            "description": "My Investor Profile is HNI / NO PROFILE / NO GOAL and No Fixed Time horizon. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for HNI / NO PROFILE / NO GOA AND NO FIXED TIME HORIZON INVESTOR ? What should i do WHO ARE HNI / NO PROFILE / NO GOAL AND NO FIXED TIME HORIZON AT CURRENT MARKET SCENARIO / CONDITION ? What was your allocation recommendation in June 2020 ? I have 50 Lakh rs and my Investor carries NO Profile ? Where should I invest?"
         },
         {
             "name": "aggressive_investor_allocation_reco",
-            "kind" : "prompt_helper",
-            "description" : "My Investor Profile is Aggressive/ have long term horizon. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Aggressive investor ? What should i do for aggressive investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Aggressive  in July 2023 ?I have 50 Lakh rs and my Investor carries Aggressive ? Where should I invest?"
+            "kind": "prompt_helper",
+            "description": "My Investor Profile is Aggressive/ have long term horizon. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Aggressive investor ? What should i do for aggressive investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Aggressive  in July 2023 ?I have 50 Lakh rs and my Investor carries Aggressive ? Where should I invest?"
         },
         {
             "name": "moderate_investor_allocation_reco",
-            "kind" : "prompt_helper",
-            "description" : "My Investor Profile is Moderate/ Medium term horizon / Moderate Retiree  Looking for Capital withdrawal. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Moderate investor ? What should i do for Moderate investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Moderate  in November 2023 ?I have 50 Lakh rs and my Investor carries Moderate/ Moderate Retiree Looking for Caopital withdrawal ? Where should I invest?"
+            "kind": "prompt_helper",
+            "description": "My Investor Profile is Moderate/ Medium term horizon / Moderate Retiree  Looking for Capital withdrawal. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Moderate investor ? What should i do for Moderate investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Moderate  in November 2023 ?I have 50 Lakh rs and my Investor carries Moderate/ Moderate Retiree Looking for Caopital withdrawal ? Where should I invest?"
         },
         {
             "name": "conservative_investor_allocation_reco",
-            "kind" : "prompt_helper",
-            "description" : "My Investor Profile is Conservative/ Medium term horizon / Conservative Retiree Looking for Capital withdrawal. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Conservative investor ? What should i do for Conservative investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Conservative  in June 2022 ? I have 50 Lakh rs and my Investor carries Conservative/ conservative Retiree  Looking for Caopital withdrawal ? Where should I invest?"
+            "kind": "prompt_helper",
+            "description": "My Investor Profile is Conservative/ Medium term horizon / Conservative Retiree Looking for Capital withdrawal. What should be Recommendation / Capital allocation / Asset allocation for him at current juncture.  Where Should I put money for Conservative investor ? What should i do for Conservative investor AT CURRENT MARKET SCENARIO / CONDITION ?What was your allocation recommendation for Conservative  in June 2022 ? I have 50 Lakh rs and my Investor carries Conservative/ conservative Retiree  Looking for Caopital withdrawal ? Where should I invest?"
         },
         {
             "name": "style_or_factor_sel_large_cap",
-            "kind" : "prompt_helper",
-            "description" : "Which style / Factor based index to go in Large cap ?"
+            "kind": "prompt_helper",
+            "description": "Which style / Factor based index to go in Large cap ?"
         },
         {
             "name": "style_or_factor_sel_mid_cap",
-            "kind" : "prompt_helper",
-            "description" : "Which style / Factor based index to go in Large cap ?"
+            "kind": "prompt_helper",
+            "description": "Which style / Factor based index to go in Large cap ?"
         },
         {
             "name": "style_or_factor_sel_small_cap",
-            "kind" : "prompt_helper",
-            "description" : "Which style / Factor based index to go in Large cap ?"
+            "kind": "prompt_helper",
+            "description": "Which style / Factor based index to go in Large cap ?"
         },
         {
             "name": "style_or_factor_all_3",
-            "kind":"prompt_helper",
-            "description":"what should be my  factor/style capital allocation % in all 3  ? Large cap, mid cap and small cap"
+            "kind": "prompt_helper",
+            "description": "what should be my  factor/style capital allocation % in all 3  ? Large cap, mid cap and small cap"
         },
         {
             "name": "performance_style_factor_selection",
-            "kind" : "prompt_helper",
-            "description" : "What is your performance based on  guidance till now for style and factor selection / What is your back-testing result says for Style and factor selection / What is the outcome if we follow your broader guidance on style selection and rotation based o algorithm ?"
+            "kind": "prompt_helper",
+            "description": "What is your performance based on  guidance till now for style and factor selection / What is your back-testing result says for Style and factor selection / What is the outcome if we follow your broader guidance on style selection and rotation based o algorithm ?"
+        },
+        {
+            "name": "debt_investment_0_1",
+            "kind": "prompt_helper",
+            "description": "I want to invest for 0 to 1 month ? I want to invest into debt for 1 month / upto 1 month ?I want to invest for very very short term / upto 1 month in debt/fixed income  ?"
+        },
+        {
+            "name": "debt_investment_1_3",
+            "kind": "prompt_helper",
+            "description": "I want to invest for 1 to 3 month ? I want to invest into debt for 3 month / upto 3 month ?I want to invest for very short duration / upto 3 month in debt/fixed income ?"
+        },
+        {
+            "name": "debt_investment_3_6",
+            "kind": "prompt_helper",
+            "description": "I want to invest for 3 to 6 month ? I want to invest into debt for 6 month / upto 6 month ?I want to invest for short duration? I want to invest into debt/fixed income for upto 6 month ?"
+        },
+        {
+            "name": "debt_investment_6_18",
+            "kind": "prompt_helper",
+            "description": "I want to invest for 6 to 18 month ? I want to invest into debt for 18 month / upto 18 month ?I want to invest for medium term in debt /fixed income upto 18 month ?"
+        },
+        {
+            "name": "debt_investment_18+",
+            "kind": "prompt_helper",
+            "description": "I want to invest for 18 month Plus/Greater than 18 Month  ? I want to invest into debt for more than 18 month /minimum 18 month ? I want to invest in debt with no fixed time horizon ? "
         }
     ]
 }

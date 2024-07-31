@@ -234,6 +234,31 @@ No one knows Financial market future performance. On 5 year Rolling basis, 99.9 
     input_variables=["AJ","AR"]
     )
 
+debt_investment_0_1_ot = PromptTemplate(
+    template="For very very short duration , your money upto 1 month should always go in {AS}",
+    input_variables=["AS"]
+)
+
+debt_investment_1_3_ot = PromptTemplate(
+    template="For Very short duration , your money upto 3 month should always go in {AT}",
+    input_variables=["AT"]
+)
+
+debt_investment_3_6_ot = PromptTemplate(
+    template="For Short duration , your money upto 6 month should go in {AU}",
+    input_variables=["AU"]
+)
+
+debt_investment_6_18_ot = PromptTemplate(
+    template="Your money upto 18 month should go in {AV}",
+    input_variables=["AV"]
+)
+
+debt_investment_18_ot = PromptTemplate(
+    template="Your money for than 18 month should go in {AW}",
+    input_variables=["AW"]
+)
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
@@ -262,5 +287,11 @@ OUTPUT_TEMPLATES = {
     "style_or_factor_sel_mid_cap": [style_or_factor_sel_mid_cap_ot, None],
     "style_or_factor_sel_small_cap": [style_or_factor_sel_small_cap_ot, None],
     "style_or_factor_all_3":[style_or_factor_all_3_ot, None],
-    "performance_style_factor_selection": [performance_style_factor_selection_ot, "concat_perf"]
+    "performance_style_factor_selection": [performance_style_factor_selection_ot, "concat_perf"],
+    "debt_investment_0_1":[debt_investment_0_1_ot,None],
+    "debt_investment_1_3":[debt_investment_1_3_ot,None],
+    "debt_investment_3_6":[debt_investment_3_6_ot,None],
+    "debt_investment_6_18":[debt_investment_6_18_ot,None],
+    "debt_investment_18+":[debt_investment_18_ot,None]
+
 }
