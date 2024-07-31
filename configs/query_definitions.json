@@ -283,5 +283,35 @@
             "18 Month and above"
         ],
         "table_name": "fact_sheet"
+    },
+    "SIP_1_6": {
+        "prefix": "Get value of",
+        "columns": [
+            "Flexi Cap Fund 3 year",
+            "Multi Cap Fund 3 Year",
+            "BAF Fund 3 Year",
+            "ESF Fund 3 Year"
+        ],
+        "table_name": "time_goal_based"
+    },
+    "SIP_6_11": {
+        "prefix": "Get value of",
+        "columns": [
+            "Flexi Cap Fund 7 Year",
+            "Multi Cap Fund 7 Year",
+            "Midcap Cap Fund 7 Year",
+            "Smallcap Cap Fund 7 Year"
+        ],
+        "table_name": "time_goal_based"
+    },
+    "SIP_12+": {
+        "prefix": "Get value of",
+        "columns": [
+            "Flexi Cap Fund 12 Year",
+            "Multi Cap Fund 12 Year",
+            "Midcap Cap Fund 12 Year",
+            "Smallcap Cap Fund 12 Year"
+        ],
+        "table_name": "time_goal_based"
     }
 }

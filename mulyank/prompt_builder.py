@@ -124,6 +124,7 @@ class RouterBuilder:
 out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 
 - Use a conversational tone that is easy to comprehend
+- Adjust the calculations according to the query
 - Clearly present any numerical or factual information in bulletpoints, always use Indian currency system
 - seperate the facts by next line character ("\n")
 - encircle headings in bold

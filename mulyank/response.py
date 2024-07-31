@@ -259,6 +259,16 @@ debt_investment_18_ot = PromptTemplate(
     input_variables=["AW"]
 )
 
+SIP_1_6_ot = PromptTemplate(
+    template="For 10000 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In BAF Fund. {E} Rs. In ESF Fund.",
+    input_variables=["B","C","D","E"]
+)
+
+SIP_6_11_12_ot = PromptTemplate(
+    template="For 10000 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In Mid Cap Fund. {E} Rs. In Small Cap Fund.",
+    input_variables=["B","C","D","E"]
+)
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
@@ -292,6 +302,9 @@ OUTPUT_TEMPLATES = {
     "debt_investment_1_3":[debt_investment_1_3_ot,None],
     "debt_investment_3_6":[debt_investment_3_6_ot,None],
     "debt_investment_6_18":[debt_investment_6_18_ot,None],
-    "debt_investment_18+":[debt_investment_18_ot,None]
+    "debt_investment_18+":[debt_investment_18_ot,None],
+    "SIP_1_6" : [SIP_1_6_ot, None],
+    "SIP_6_11" : [SIP_6_11_12_ot, None],
+    "SIP_12+" : [SIP_6_11_12_ot, None]
 
 }

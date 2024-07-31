@@ -204,6 +204,21 @@
             "name": "debt_investment_18+",
             "kind": "prompt_helper",
             "description": "I want to invest for 18 month Plus/Greater than 18 Month  ? I want to invest into debt for more than 18 month /minimum 18 month ? I want to invest in debt with no fixed time horizon ? "
+        },
+        {
+            "name" : "SIP_1_6",
+            "kind" : "prompt_helper",
+            "description" : "I want to go for short to medium term SIP ? I want to go for maximum 6 year SIP ?"
+        },
+        {
+            "name": "SIP_6_11",
+            "kind" : "prompt_helper",
+            "description" : "I want to gor for Medium to Long term SIP ?  I want to go for maximum 11 year SIP ?"
+        },
+        {
+            "name": "SIP_12+",
+            "kind" : "prompt_helper",
+            "description" : "I want to gor for Long term SIP ?  I want to go for SIP greater than 12 year ?"
         }
     ]
 }
