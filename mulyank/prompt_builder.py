@@ -40,6 +40,64 @@ Provide the information as requested:
 
 """
 
+DIRECT_SQL_PROMPT = """
+Create an SQL query that adheres to these guidelines:
+
+1) When filter on Equity funds, remember following are the equity fund categories
+Equity - Focused Fund
+Equity - Dividend Yield Fund
+Equity - ELSS
+Equity - Large & Mid Cap Fund
+Equity - Thematic Fund - Other
+Equity - Flexi Cap Fund
+Equity - Large Cap Fund
+Equity - Mid Cap Fund
+Index Funds - Other
+Index Funds - Nifty
+Index Funds - Nifty Next 50
+Equity - Value Fund
+Equity - Small cap Fund
+Equity - Multi Cap Fund
+Equity - Sectoral Fund - Service Industry
+Index Funds - Sensex
+Equity - Contra Fund
+
+2) When filter on Hybrid funds, remember following are the hybrid fund categories
+Hybrid - Arbitrage Fund
+Hybrid - Balanced Advantage
+Hybrid - Aggressive Hybrid Fund
+Hybrid - Equity Savings
+Hybrid - Conservative Hybrid Fund
+Hybrid - Multi Asset Allocation
+Hybrid - Dynamic Asset Allocation
+
+3) When filter on Debt funds, remember following are the debt fund categories
+Debt - Banking and PSU Fund
+Debt - Corporate Bond Fund
+Debt - Credit Risk Fund
+Debt - Dynamic Bond
+Debt - Floater Fund
+Debt - Gilt Fund
+Debt - Medium to Long Duration Fund
+Debt - Liquid Fund
+Debt - Low Duration Fund
+Debt - Medium Duration Fund
+Debt - Money Market Fund
+Debt - Ultra Short Duration Fund
+Debt - Short Duration Fund
+Debt - Gilt Fund with 10 year constant duration
+Debt - Long Duration Fund
+
+4) Do not apply limit on the sql query e.g. LIMIT 5 or LIMIT 10. It is not required.
+
+5) When filtering the data on string columns, use approximate match rather than full match. Do not filter on past tactical calls.
+
+6) use exact match for mid cap fund, Nifty fund, gilt fund and long duration fund. 
+
+{question}
+
+"""
+
 class QueryBuilder:
 
     def __init__(self, 
@@ -74,6 +132,24 @@ class QueryBuilder:
 
     def handle_predefined(self, name):
         return self.query_def_content[name]
+    
+    def handle_direct_query(self, name):
+        block = self.query_def_content[name]
+        table_name = block["table_name"]
+
+        template = DIRECT_SQL_PROMPT 
+        if "prefix" in block.keys():
+            prefix = block["prefix"]
+            template += "\n {}".format(prefix)
+        if "columns" in block.keys():
+            columns = block["columns"]
+            columns_str = ", ".join(columns)
+            template += " {} only".format(columns_str)
+        template += "\n" + "use table name : " + table_name
+        if "filter_by" in block.keys():
+            filter_column = block["filter_by"]
+            template += " \napply filter : {}".format(filter_column)
+        return self.get_prompt(template)
         
     def handle_prompt_helper(self, name):
         block = self.query_def_content[name]
@@ -86,8 +162,12 @@ class QueryBuilder:
             name = block["name"]
             if block["kind"] == "Predefined":
                 self.query_mapping[name] = self.handle_predefined(name)
+            elif block["kind"] == "direct":
+                self.query_mapping[name] = (block["kind"], name)
+            elif block["kind"] == "direct_to_sql_chain":
+                self.query_mapping[name] = (block["kind"], self.handle_direct_query(name))
             else:
-                self.query_mapping[name] = self.handle_prompt_helper(name)
+                self.query_mapping[name] = (block["kind"], self.handle_prompt_helper(name))
 
     def get_query_mapping(self):
         return self.query_mapping
@@ -130,6 +210,8 @@ out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 - encircle headings in bold
 - Refrain to brag about your capability
 - Refrain to provide unnecessary explanations
+- Show in tabular format whenever possible
+- If the response is empty, do not make up the answer, just say no results found.
 
 As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details. 
 ### Query : ###
@@ -157,3 +239,18 @@ Translated Message:
 ---------"""
 
 IN_PROMPT = PromptTemplate(template=input_prompt, input_variables=["message"])
+
+direct_template = """
+- Use a conversational tone that is easy to comprehend
+- Adjust the calculations according to the query
+- Clearly present any numerical or factual information in bulletpoints, always use Indian currency system
+- seperate the facts by next line character ("\n")
+- encircle headings in bold
+- Refrain to brag about your capability
+- Refrain to provide unnecessary explanations
+- Show in tabular format whenever possible
+
+{query}
+"""
+
+DIRECT_PROMPT = PromptTemplate(template = direct_template, input_variables=["query"])

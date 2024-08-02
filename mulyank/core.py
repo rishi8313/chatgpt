@@ -6,10 +6,11 @@ from langchain_community.utilities import SQLDatabase
 import sqlite3
 from langchain.cache import InMemoryCache
 from langchain.globals import set_llm_cache
-
+from langchain.prompts import PromptTemplate
+import langchain_core
 import time
 from .response import OUTPUT_TEMPLATES
-from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT
+from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT, DIRECT_PROMPT
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy import text
@@ -107,11 +108,17 @@ class QueryHandler:
             query = self.query_mapping[destination_key]
             if DEBUG:
                 print(query)
-            if type(query) != str:
-                query = query.format(question = user_message)
+            print(type(query))
+            if type(query) == str:
+                response = self.query_mapping[destination_key]
+            elif type(query) == tuple and query[0] == "direct":
+                direct_chain = LLMChain(llm = self.llm, prompt=DIRECT_PROMPT)
+                response = direct_chain.invoke(input = {"query" : user_message})["text"]
+            elif type(query) == tuple:
+                sql_chain_input = query[1].format(question = user_message)
                 db = SQLDatabase.from_uri(self.db_connection_str)
                 write_query = create_sql_query_chain(self.llm, db)
-                sql_query = write_query.invoke({"question": query})
+                sql_query = write_query.invoke({"question": sql_chain_input})
                 sql_query = sql_query.replace("```","")
                 sql_query = sql_query.replace("sql\n","")
                 sql_query = sql_query.strip()
@@ -124,16 +131,16 @@ class QueryHandler:
                 response = self.run_query(sql_query)
                 if DEBUG:
                     print(destination_key)
-                response = OutputFormatter(destination_key).format(response)
-                response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
-            else:
-                response = self.query_mapping[destination_key]
-            
+                if query[0] == "prompt_helper":
+                    response = OutputFormatter(destination_key).format(response)
+                    response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
+                elif query[0] == "direct_to_sql_chain":
+                    response = self.output_chain.invoke(input = {"query" : user_message, "response" : str(response)})["text"]
         except:
            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
         for sentence in response.split("\n"):
             for word in sentence.split(" "):
-                time.sleep(0.05)
+                time.sleep(0.0001)
                 yield word + " "
             yield "\n"

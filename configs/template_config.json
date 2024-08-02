@@ -36,6 +36,11 @@
             "description": "What will be future performance of debt? What will be future performance of Fixed income based/Debt Allocation on your guidance ?"
         },
         {
+            "name" : "stock_tips_future_options_multibagger",
+            "kind" : "Predefined",
+            "description" : "What is your tip on stock ? Suggest me any best stock to buy ? What are multibagger stock according to you ? Any stock idea ? Which stock wil you recommend ? Any future and option trading strategy ? Shall I buy put or call ? Shall I sell put or call ?"
+        },
+        {
             "name": "market_scenario",
             "kind": "prompt_helper",
             "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores, e.g. How is the market condition? market kesa h? What are the scores?"
@@ -219,6 +224,91 @@
             "name": "SIP_12+",
             "kind" : "prompt_helper",
             "description" : "I want to gor for Long term SIP ?  I want to go for SIP greater than 12 year ?"
+        },
+        {
+            "name" : "pe_pbv_scores",
+            "kind" : "prompt_helper",
+            "description": "What are  0 , 1 , 2 score for P/E & P/BV ? What are PE scores ? What are PBV Scores ? What is the inference of PE & PBV the score ? What does current score of PE & PBV telling ?"
+        },
+        {
+            "name" : "fund_filteration_equity_list",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Show me the list of all Equity Category ?"
+        },
+        {
+            "name" :"equity_category_color",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Give me all Red/yellow/green funds which falls/comes under an equity category ?"
+        },
+        {
+            "name" : "priority_funds_equity",
+            "kind" : "direct_to_sql_chain",
+            "description" :"Eg : Give me priority / whitelist fund from provided equity Category e.g. mid cap?"
+        },
+        {
+            "name" : "fund_filteration_hybrid_list",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Show me the list of all Hybrid Category ?"
+        },
+        {
+            "name" :"hybrid_category_color",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Give me Red/yellow/green funds which falls/comes under a hybrid category ? hybrid covers only Arbitrage, BAF, Aggressive, Equity Savings (not equity), Conservative, Multi and Dynamic Asset"
+        },
+        {
+            "name" : "priority_funds_hybrid",
+            "kind" : "direct_to_sql_chain",
+            "description" :"Eg : Give me priority / whitelist fund from provided hybrid Category ?"
+        },
+        {
+            "name" : "fund_filteration_debt_list",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Show me the list of all Debt Category ?"
+        },
+        {
+            "name" :"debt_category_color",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Give me Red/yellow/green funds which falls/comes under a debt category ?"
+        },
+        {
+            "name" : "priority_funds_debt",
+            "kind" : "direct_to_sql_chain",
+            "description" :"Eg : Give me priority / whitelist fund from provided a debt Category ?"
+        },
+        {
+            "name" : "domestic_sectorial_ranking",
+            "kind" : "direct_to_sql_chain",
+            "description" : "Give me top sectors ? Give me sectors where I can overweight ? Which sector do you recommend now ? Any sectoral call or alert ? What are favourable sectors ? Any good sector to invest ? Which sector you will suggest now ?"
+        },
+        {
+            "name":"style_factor_funds",
+            "kind" : "direct_to_sql_chain",
+            "description": "Give me list of style based fund ? What factor funds shall I choose in large or mid or small ? Give me style based fund according to MARINA ? Give me style / factor fund which are favourable ? Give me style/ factor fund which should be avoided ?"
+        },
+        {
+            "name":"index_funds",
+            "kind" : "direct_to_sql_chain",
+            "description":"Give me list of plain vanila index funds ? Give me index funds ? What index funds do you recommend on large or mid or small ?"
+        },
+        {
+            "name":"sector_funds",
+            "kind":"direct_to_sql_chain",
+            "description":"Give me list of sectoral funds ? What sector fund you will suggest now ? Give me sectoral fund for tactical allocation ? What do you recommend now in sector funds ?"
+        },
+        {
+            "name":"global_funds",
+            "kind":"direct_to_sql_chain",
+            "description":"Give me list of global funds/country looks attractive ? What global fund you will suggest now ? Give me global fund for tactical allocation ? What do you recommend now in global funds ?"
+        },
+        {
+            "name" :"financial_calculation",
+            "kind" :"direct",
+            "description":"Example : What should be my sip amount to achieve a corpus of 1 crore in 5 years? I am investing 5 lakh with assumption cagr of 15 % . What will be accumulated corpus after 10 and 15 year ? "
+        },
+        {
+            "name" :"past_tactical_calls",
+            "kind" :"direct_to_sql_chain",
+            "description":"What was your past tactical call/ Sectoral call / Global call ? What is your performance of past tactical call / Sectoral call / global alerts ?"
         }
     ]
 }

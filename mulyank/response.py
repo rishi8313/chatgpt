@@ -269,6 +269,11 @@ SIP_6_11_12_ot = PromptTemplate(
     input_variables=["B","C","D","E"]
 )
 
+pe_pbv_scores_ot = PromptTemplate(
+    template = "Current PE and PBV scores are {D} & {E} respectively. Broader Inference from the scores are if any of the Score is near 0 than :  Margin of Safety is Favourable in Equity as an Asset class. Probability of making money in coming 12 to 24 month is decent. If both the Scores are near or Below 0 than : Margin of safety is extremely Favourable. Accumulate Equity as an asset class from both hands.  If both the score are near 1  : Than more than half of the safety is gone and the view is Neutral on Equity as an Asset class.  If both the score are near or above 1.25 than : Have cautious stance on market. If Both are near or above 1.5 than : Exit Equity as asset class or Stop putting fresh money atleast. ",
+    input_variables=["D","E"]
+)
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
@@ -305,6 +310,6 @@ OUTPUT_TEMPLATES = {
     "debt_investment_18+":[debt_investment_18_ot,None],
     "SIP_1_6" : [SIP_1_6_ot, None],
     "SIP_6_11" : [SIP_6_11_12_ot, None],
-    "SIP_12+" : [SIP_6_11_12_ot, None]
-
+    "SIP_12+" : [SIP_6_11_12_ot, None],
+    "pe_pbv_scores" : [pe_pbv_scores_ot, None],
 }

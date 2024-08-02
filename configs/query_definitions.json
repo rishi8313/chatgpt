@@ -7,6 +7,7 @@
     "future_performance_market_cap": "No one knows Financial market future performance. On 5 year Rolling basis, 99.9 % Probability that its Risk - adjusted performance would be better than most of the advisory Fraternity doing allocation across market cap bsed on Narrative or guesswork. ",
     "mid_small_large_cap_back_testing": "Allocation Ratio has given return of Midcap in Long run but Downside Participation similar to Nifty 50.",
     "back_testing_no_profile": "This Investor Profile don’t have specific goal and time-horizon. Only goal is Multiplication of investment in Medium to Long run. Market downside capture will be approx 60% and Upside capture would be 85% Post tax on 5 Year rolling basis. Frequncy of re-balancing would be 12-14 time in journey of 15 Year. ",
+    "stock_tips_future_options_multibagger" : "We don’t provide stock recommendation or any personalized investment advice. We Don’t provide any future and option calls or any trading startegy. Fund filtration too is not our primary expertise. This is just additional handholding service for second opinion.  Our primary expertise is Valuation + business cycle assessment and providing framework and system for  asset class , category Plus sub category selection along with style/factor selection.",
     "market_scenario": {
         "prefix": "Get value of",
         "columns": [
@@ -313,5 +314,136 @@
             "Smallcap Cap Fund 12 Year"
         ],
         "table_name": "time_goal_based"
+    },
+    "pe_pbv_scores": {
+        "prefix": "Get value of",
+        "columns": [
+            "P/E SCORE",
+            "PBV Score"
+        ],
+        "table_name": "pe_pbv_simple_scores"
+    },
+    "fund_filteration_equity_list": {
+        "table_name": "fund_filteration_equity"
+    },
+    "equity_category_color": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Colour Coding"
+        ],
+        "filter_by": "Category",
+        "table_name": "fund_filteration_equity"
+    },
+    "priority_funds_equity": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Category",
+            "Colour Coding"
+        ],
+        "filter_by": "Value = 1",
+        "table_name": "fund_filteration_equity"
+    },
+    "fund_filteration_hybrid_list": {
+        "table_name": "fund_filteration_hybrid"
+    },
+    "hybrid_category_color": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Colour Coding"
+        ],
+        "filter_by": "Category",
+        "table_name": "fund_filteration_hybrid"
+    },
+    "priority_funds_hybrid": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Category",
+            "Colour Coding"
+        ],
+        "filter_by": "Value = 1",
+        "table_name": "fund_filteration_hybrid"
+    },
+    "fund_filteration_debt_list": {
+        "table_name": "fund_filteration_debt"
+    },
+    "debt_category_color": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Colour Coding"
+        ],
+        "filter_by": "Category",
+        "table_name": "fund_filteration_debt"
+    },
+    "priority_funds_debt": {
+        "prefix": "Get value of",
+        "columns": [
+            "Scheme name",
+            "Category",
+            "Colour Coding"
+        ],
+        "filter_by": "Value = 1",
+        "table_name": "fund_filteration_debt"
+    },
+    "domestic_sectorial_ranking": {
+        "prefix": "Get value of",
+        "columns": [
+            "Ranking",
+            "Equity (Sector)",
+            "Relative Allocation"
+        ],
+        "filter_by" : "None",
+        "table_name" : "domestic_sectorial_ranking"
+    },
+    "style_factor_funds":{
+        "prefix" : "Get value of",
+        "columns" : [
+            "Factor Style Passive Funds",
+            "Style Category",
+            "Priority"
+        ],
+        "filter_by" : "None",
+        "table_name" : "style_factor_funds"
+    },
+    "index_funds":{
+        "prefix" : "Get value of",
+        "columns" : [
+            "List of Plain index fund",
+            "Index Category"
+        ],
+        "filter_by" : "None",
+        "table_name" : "index_funds"
+    },
+    "sector_funds":{
+        "prefix" : "Get value of",
+        "columns" : [
+            "Sectoral Funds",
+            "Sector Category"
+        ],
+        "filter_by" : "None",
+        "table_name" : "sector_funds"
+    },
+    "global_funds":{
+        "prefix" : "Get value of",
+        "columns" : [
+            "Global Funds",
+            "Global Category"
+        ],
+        "filter_by" : "None",
+        "table_name" : "global_funds"
+    },
+    "past_tactical_calls":{
+        "prefix" : "Get all rows of",
+        "columns" : [
+            "Date",
+            "Call / Alerts",
+            "Result"
+        ],
+        "filter_by" :"No filter",
+        "table_name" : "past_tactical_calls"
     }
 }
