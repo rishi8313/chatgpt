@@ -144,8 +144,8 @@ class QueryHandler:
         except:
            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
-            for sentence in response.split("\n"):
-                for word in sentence.split(" "):
-                    time.sleep(0.0001)
-                    yield word + " "
-                yield "\n"
+        for sentence in response.split("\n"):
+            for word in sentence.split(" "):
+                time.sleep(0.0001)
+                yield word + " "
+            yield "\n"
