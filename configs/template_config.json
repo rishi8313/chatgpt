@@ -308,7 +308,7 @@
         {
             "name" :"past_tactical_calls",
             "kind" :"direct_to_sql_chain",
-            "description":"What was your past tactical call/ Sectoral call / Global call ? What is your performance of past tactical call / Sectoral call / global alerts ?"
+            "description":"What was your past tactical call? What was your past Sectoral call ? What was your past Global call ? What is your performance of past tactical call ? What is your performance of past Sectoral call ? What is your performance of past global alerts ?"
         }
     ]
 }

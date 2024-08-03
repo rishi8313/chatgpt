@@ -15,7 +15,9 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy import text
 from langchain.callbacks.base import BaseCallbackHandler
+from datetime import datetime
 set_llm_cache(InMemoryCache())
+
 
 DEBUG = True
 
@@ -75,7 +77,7 @@ class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
         llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0, seed = 0)
-        self.llm = ChatOpenAI(api_key=api_key, temperature=0, seed = 0)
+        self.llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18", api_key=api_key, temperature=0, seed = 0)
         self.translate_chain = LLMChain(llm = llm, prompt=IN_PROMPT)
         query_bldr = QueryBuilder()
         self.db_connection_str = db_loc
@@ -115,10 +117,13 @@ class QueryHandler:
                 direct_chain = LLMChain(llm = self.llm, prompt=DIRECT_PROMPT)
                 response = direct_chain.invoke(input = {"query" : user_message})["text"]
             elif type(query) == tuple:
+                print("start_time",datetime.now())
                 sql_chain_input = query[1].format(question = user_message)
                 db = SQLDatabase.from_uri(self.db_connection_str)
                 write_query = create_sql_query_chain(self.llm, db)
+                print("chain_creation_time", datetime.now())
                 sql_query = write_query.invoke({"question": sql_chain_input})
+                print("result time", datetime.now())
                 sql_query = sql_query.replace("```","")
                 sql_query = sql_query.replace("sql\n","")
                 sql_query = sql_query.strip()
@@ -139,8 +144,8 @@ class QueryHandler:
         except:
            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 
-        for sentence in response.split("\n"):
-            for word in sentence.split(" "):
-                time.sleep(0.0001)
-                yield word + " "
-            yield "\n"
+            for sentence in response.split("\n"):
+                for word in sentence.split(" "):
+                    time.sleep(0.0001)
+                    yield word + " "
+                yield "\n"
