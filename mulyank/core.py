@@ -3,15 +3,11 @@ from langchain.chains.router.llm_router import LLMRouterChain
 from langchain.chains import create_sql_query_chain
 from langchain.chains.llm import LLMChain
 from langchain_community.utilities import SQLDatabase
-import sqlite3
-from langchain.cache import InMemoryCache
+from langchain_community.cache import InMemoryCache
 from langchain.globals import set_llm_cache
-from langchain.prompts import PromptTemplate
-import langchain_core
 import time
 from .response import OUTPUT_TEMPLATES
 from mulyank.prompt_builder import QueryBuilder, RouterBuilder, OUTPUT_PROMPT, IN_PROMPT, DIRECT_PROMPT
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy import text
 from langchain.callbacks.base import BaseCallbackHandler
@@ -76,15 +72,15 @@ class OutputFormatter:
 class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
-        llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0, seed = 0)
-        self.llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18", api_key=api_key, temperature=0, seed = 0)
+        llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0, max_tokens=256)
+        self.llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18", api_key=api_key, temperature=0, max_tokens=256)
         self.translate_chain = LLMChain(llm = llm, prompt=IN_PROMPT)
         query_bldr = QueryBuilder()
         self.db_connection_str = db_loc
         router_bldr = RouterBuilder()
         self.router_chain = LLMRouterChain.from_llm(llm, router_bldr.get_router_prompt())
         self.query_mapping = query_bldr.get_query_mapping()
-        llm1 = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0.3, seed = 0)
+        llm1 = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0.3)
         self.output_chain = LLMChain(llm = llm1, prompt=OUTPUT_PROMPT)
 
     def run_query(self, sql_query):
@@ -101,15 +97,16 @@ class QueryHandler:
             user_message = state.messages[-1]["content"].lower()
             if DEBUG:
                 print(user_message)
+            print("start_time",datetime.now())
             user_message = self.translate_chain.invoke(input = {"message": user_message})["text"]
+            print("translate time",datetime.now())
             if DEBUG:
                 print(user_message)
             destination_key = self.router_chain.invoke({"input": user_message})["destination"]
+            print("router_time",datetime.now())
             if DEBUG:
                 print(destination_key)
             query = self.query_mapping[destination_key]
-            if DEBUG:
-                print(query)
             print(type(query))
             if type(query) == str:
                 response = self.query_mapping[destination_key]
@@ -117,13 +114,12 @@ class QueryHandler:
                 direct_chain = LLMChain(llm = self.llm, prompt=DIRECT_PROMPT)
                 response = direct_chain.invoke(input = {"query" : user_message})["text"]
             elif type(query) == tuple:
-                print("start_time",datetime.now())
                 sql_chain_input = query[1].format(question = user_message)
                 db = SQLDatabase.from_uri(self.db_connection_str)
                 write_query = create_sql_query_chain(self.llm, db)
                 print("chain_creation_time", datetime.now())
                 sql_query = write_query.invoke({"question": sql_chain_input})
-                print("result time", datetime.now())
+                print("query generation time", datetime.now())
                 sql_query = sql_query.replace("```","")
                 sql_query = sql_query.replace("sql\n","")
                 sql_query = sql_query.strip()
