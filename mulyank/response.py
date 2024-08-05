@@ -274,6 +274,37 @@ pe_pbv_scores_ot = PromptTemplate(
     input_variables=["D","E"]
 )
 
+domestic_sectorial_ranking_ot = PromptTemplate(
+    template = """Following are Sectors for tactical allocation / where one can put money - Rank , Sector Name , Relative Allocation.
+    {A}
+      OW means one can over-weight sector and priority can be given to Over-weight one.  NW means one can be Neutral-weight on the sector. UW means one can Under-weight sectors and should be avoided for tactical calls. """,
+    input_variables=["A"]
+)
+
+style_factor_funds_ot = PromptTemplate(
+    template = """Following are style/factor based fund along with first and second priority list. 
+{A}
+Priority with 1 are currently favourable funds and one should distribute money according to allocation suggested by MULYANKAN GPT.
+""",
+input_variables=["A"]
+)
+
+index_funds_ot = PromptTemplate(
+    template = """Following are plain vanila index for portfolio creation.
+{A}
+ one should distribute money according to allocation suggested by MULYANKAN GPT FOR Large , Mid and small cap.
+""",
+input_variables=["A"]
+)
+
+sector_funds_ot = PromptTemplate(
+    template = """Following are list of sectoral fund for tactical allocation. 
+{A}
+one should distribute money according to allocation suggested by MULYANKAN GPT FOR Sectoral ranking.
+""",
+input_variables=["A"]
+)
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
@@ -289,7 +320,7 @@ OUTPUT_TEMPLATES = {
     "market_fall_undervalue":[market_fall_undervalue_ot,None],
     "market_up_overvalue":[market_up_overvalue_ot, None],
     "current_market_value":[current_market_value_ot,None],
-    "backtesting_broader_guidance":[backtesting_broader_guidance_ot, None],
+    "backtesting_broader_guidance":[backtesting_broader_guidance_ot, "concat"],
     "debt_allocation_back_testing":[debt_allocation_back_testing_ot,None],
     "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None],
     "category_selection_under_debt":[category_selection_under_debt_ot, None],
@@ -312,4 +343,8 @@ OUTPUT_TEMPLATES = {
     "SIP_6_11" : [SIP_6_11_12_ot, None],
     "SIP_12+" : [SIP_6_11_12_ot, None],
     "pe_pbv_scores" : [pe_pbv_scores_ot, None],
+    "domestic_sectorial_ranking" : [domestic_sectorial_ranking_ot, "all"],
+    "style_factor_funds" : [style_factor_funds_ot, "all"],
+    "index_funds" : [index_funds_ot, "all"],
+    "sector_funds" : [sector_funds_ot, "all"]
 }

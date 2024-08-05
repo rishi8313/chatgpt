@@ -390,7 +390,7 @@
         "table_name": "fund_filteration_debt"
     },
     "domestic_sectorial_ranking": {
-        "prefix": "Get value of",
+        "prefix": "Get value of all",
         "columns": [
             "Ranking",
             "Equity (Sector)",

@@ -243,7 +243,7 @@
         {
             "name" : "priority_funds_equity",
             "kind" : "direct_to_sql_chain",
-            "description" :"Eg : Give me priority / whitelist fund from provided equity Category e.g. mid cap?"
+            "description" :"Eg : Give me priority / whitelist/accha/ Best / Top / Priority / whitelist / sabse acha / badya / mast fund from provided equity Category e.g. mid cap?"
         },
         {
             "name" : "fund_filteration_hybrid_list",
@@ -258,7 +258,7 @@
         {
             "name" : "priority_funds_hybrid",
             "kind" : "direct_to_sql_chain",
-            "description" :"Eg : Give me priority / whitelist fund from provided hybrid Category ?"
+            "description" :"Eg : Give me priority / whitelist/accha/ Best / Top / Priority / whitelist / sabse acha / badya / mast fund from provided hybrid Category ?"
         },
         {
             "name" : "fund_filteration_debt_list",
@@ -273,7 +273,7 @@
         {
             "name" : "priority_funds_debt",
             "kind" : "direct_to_sql_chain",
-            "description" :"Eg : Give me priority / whitelist fund from provided a debt Category ?"
+            "description" :"Eg : Give me priority / whitelist/accha/ Best / Top / Priority / whitelist / sabse acha / badya / mast fund from provided a debt Category ?"
         },
         {
             "name" : "domestic_sectorial_ranking",

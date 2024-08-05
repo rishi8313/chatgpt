@@ -29,8 +29,12 @@ class StreamHandler(BaseCallbackHandler):
 class OutputFormatter:
 
     def __init__(self, destination_key):
-        self.template = OUTPUT_TEMPLATES[destination_key][0]
-        self.aggregation = OUTPUT_TEMPLATES[destination_key][1]
+        if destination_key in OUTPUT_TEMPLATES.keys():
+            self.template = OUTPUT_TEMPLATES[destination_key][0]
+            self.aggregation = OUTPUT_TEMPLATES[destination_key][1]
+            self.formatting_needed = True
+        else:
+            self.formatting_needed = False
 
     def apply(self, agg, res):
         if DEBUG:
@@ -48,8 +52,14 @@ class OutputFormatter:
             out = [int(res[0]*100), int(res[1] * 100), int(res[2]*100)]
             out.extend(res[3:])
             return out
+        elif agg == "all":
+            return str(res)
         elif agg == "concat":
-            return " ".join(res)
+            print("I am inside concate", res)
+            concatenated = ""
+            for r in res:
+                concatenated += r[0]
+            return concatenated
         elif agg == "concat_perf":
             return res
     
@@ -57,7 +67,10 @@ class OutputFormatter:
         if DEBUG:
             print(response)
         if self.aggregation != None:
-            agg_resp = self.apply(self.aggregation, response[0])
+            if self.aggregation not in ["concat", "all"]:
+                agg_resp = self.apply(self.aggregation, response[0])
+            else:
+                agg_resp = self.apply(self.aggregation, response)
             if type(agg_resp) is str or type(agg_resp) is int or type(agg_resp) is float:
                 response = [[agg_resp]]
             elif type(agg_resp) is tuple or type(agg_resp) is list:
@@ -136,7 +149,11 @@ class QueryHandler:
                     response = OutputFormatter(destination_key).format(response)
                     response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
                 elif query[0] == "direct_to_sql_chain":
-                    response = self.output_chain.invoke(input = {"query" : user_message, "response" : str(response)})["text"]
+                    if OutputFormatter(destination_key).formatting_needed == True:
+                        response = OutputFormatter(destination_key).format(response)
+                        response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
+                    else:
+                        response = self.output_chain.invoke(input = {"query" : user_message, "response" : str(response)})["text"]
         except:
            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."
 

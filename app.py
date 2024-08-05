@@ -22,7 +22,7 @@ def main():
     with cols[1]:
         ## Define sidebar
         st.title("**Mulyankan/मुल्यांकन GPT**")
-    st.sidebar.markdown("<h5 style='font-size: 12px;'>Allocate , Rebalance , Review -  Powered by AI for MFD/RIA/WEALTH MANAGERS</h5>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h5 style='font-size: 12px;'>Allocate , Review , Re-balance -  Powered by AI for MFD/RIA/WEALTH MANAGERS</h5>", unsafe_allow_html=True)
     for i in range(14):
         st.sidebar.write("")
 
