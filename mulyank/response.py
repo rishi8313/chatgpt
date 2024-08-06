@@ -305,6 +305,15 @@ one should distribute money according to allocation suggested by MULYANKAN GPT F
 input_variables=["A"]
 )
 
+past_tactical_calls_ot = PromptTemplate(
+    template = """Some of the recent tactical call on Sectoral and global markets were : 
+{A}
+For more history of our bold call / Tactical alerts : Here is the link - https://mulyankangurukul.in/category/tactical-thematic/
+""",
+input_variables=["A"]
+)
+
+
 OUTPUT_TEMPLATES = {
     "market_scenario": [market_scenario_ot, "convert_to_perc"],
     "capital_allocation": [capital_allocation_ot, None],
@@ -346,5 +355,6 @@ OUTPUT_TEMPLATES = {
     "domestic_sectorial_ranking" : [domestic_sectorial_ranking_ot, "all"],
     "style_factor_funds" : [style_factor_funds_ot, "all"],
     "index_funds" : [index_funds_ot, "all"],
-    "sector_funds" : [sector_funds_ot, "all"]
+    "sector_funds" : [sector_funds_ot, "all"],
+    "past_tactical_calls" : [past_tactical_calls_ot, "all"]
 }

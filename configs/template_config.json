@@ -41,6 +41,26 @@
             "description" : "What is your tip on stock ? Suggest me any best stock to buy ? What are multibagger stock according to you ? Any stock idea ? Which stock wil you recommend ? Any future and option trading strategy ? Shall I buy put or call ? Shall I sell put or call ?"
         },
         {
+            "name":"detailed_working",
+            "kind" : "Predefined",
+            "description" : "I want to see detailed working and underlying rationale / I want too see the scores and anlytics / I want to see the framework and system / I want to see output on the basis of which this guidance are given by Mulyankan GPT ? If i want to undestand in detail , what should i do ?"
+        },
+        {
+            "name" :"subscription_query",
+            "kind" : "Predefined",
+            "description":"what are Platform key deliverables ? What will I get on subscription ?"
+        },
+        {
+            "name" : "delivery_process",
+            "kind" : "Predefined",
+            "description" : "What is your Delivery process ?"
+        },
+        {
+            "name" : "subscription_cost",
+            "kind" : "Predefined",
+            "description" : "What is subscription cost/pricing/plan ? How much I have to pay for subscription ?"
+        },
+        {
             "name": "market_scenario",
             "kind": "prompt_helper",
             "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores, e.g. How is the market condition? market kesa h? What are the scores?"
