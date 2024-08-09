@@ -26,6 +26,37 @@ sheet_to_function_mapping = {
 
 }
 
+def update(data, table_name):
+    db_connection_str = os.environ["DB_CONNECTION_STR"]
+    db_connection = create_engine(db_connection_str)
+
+    engine = create_engine(db_connection_str)
+    with engine.connect() as conn:
+        try:
+            conn.execute(text("DROP TABLE {}".format(table_name)))
+        except:
+            pass
+        data.to_sql(name = table_name, con = db_connection)
+
+def show_and_update(data, table_name):
+    st.write(data)
+    if st.button("Update"):
+        update(data, table_name)
+        st.write("Data updated in {}".format(table_name))
+
+def show_and_update_all(data, table_names):
+    tabs = st.tabs(table_names)
+    print(table_names)
+    for d, tab, table_name in zip(data, tabs,table_names):
+        with tab:
+            st.header(table_name)
+            st.write(d)
+    if st.button("Update"):
+        with st.spinner("Updating the database"):
+            for d, table_name in zip(data, table_names):
+                update(d, table_name)
+            st.write("Data updated in all tables")
+
 def main():
     st.set_page_config(initial_sidebar_state='expanded', page_title='Mulyankan GPT', page_icon=":moneybag:", layout="wide")
     cols = st.sidebar.columns([0.4,0.6])
@@ -49,18 +80,22 @@ indirectly, arising from the use or inability to use this
 subscription's content.</h5>""", unsafe_allow_html=True)
     
     if file := st.file_uploader("Upload the latest data"):
-        sheet_name = st.selectbox("Select Sheet to update", pd.ExcelFile(file).sheet_names)
-        print(sheet_name)
-        data = pd.read_excel(file, sheet_name=sheet_name)
-        
-        if sheet_name in sheet_to_function_mapping:
-            sheet_to_function_mapping[sheet_name](st, data)
-        # if sheet_name == "Data Source":
-        #     handle_fact_sheet(st, data)
-        # elif sheet_name == "Time & Goal Based":
-        #     handle_time_goal_based(st, data)
-        # elif sheet_name == "PE PBV SIMPLE SCORES":
-        
+        option = st.selectbox("Select Sheet to update",["Update All"] + pd.ExcelFile(file).sheet_names)
+        if option == "Update All":
+            cleaned_data, table_names = [], []
+            for sheet_name in sheet_to_function_mapping.keys():
+                data = pd.read_excel(file, sheet_name=sheet_name)
+                if sheet_name in sheet_to_function_mapping.keys():
+                    clean_data, table_name = sheet_to_function_mapping[sheet_name](data)
+                    cleaned_data.append(clean_data)
+                    table_names.append(table_name)
+            show_and_update_all(cleaned_data, table_names)
+        else:
+            sheet_name = option
+            data = pd.read_excel(file, sheet_name=sheet_name)
+            if sheet_name in sheet_to_function_mapping:
+                data, table_name = sheet_to_function_mapping[sheet_name](data)
+                show_and_update(data, table_name)
 
 if __name__ == "__main__":
     main()
