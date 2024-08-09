@@ -1,13 +1,30 @@
 import streamlit as st
 import numpy as np
-from sqlalchemy import create_engine
+
 import pandas as pd
 import os
 from dotenv import load_dotenv
-from sqlalchemy import text
+
+from data_handlers import *
 
 if not load_dotenv("/etc/secrets/.env"):
-    load_dotenv("etc/secrets/.env")
+    load_dotenv("mulyank/etc/secrets/.env")
+
+sheet_to_function_mapping = {
+    "Data Source":handle_fact_sheet,
+    "Time & Goal Based":handle_time_goal_based,
+    "PE PBV SIMPLE SCORES":handle_pe_pbv_scores,
+    "Fund Filtration Equity":handle_fund_filteration_equity,
+    "Fund Filtration Hybrid" : handle_fund_filteration_hybrid,
+    "Fund Filtration Debt" : handle_fund_filteration_debt,
+    "Domestic Sectoral Ranking" : handle_domestic_sectorial_ranking,
+    "Style Factor Funds" : handle_style_factor_funds,
+    "Index Funds": handle_index_funds,
+    "Sector Funds": handle_sector_funds,
+    "Global Funds": handle_global_funds,
+    "Past Tactical Calls" : handle_past_tactical_calls,
+
+}
 
 def main():
     st.set_page_config(initial_sidebar_state='expanded', page_title='Mulyankan GPT', page_icon=":moneybag:", layout="wide")
@@ -32,29 +49,18 @@ indirectly, arising from the use or inability to use this
 subscription's content.</h5>""", unsafe_allow_html=True)
     
     if file := st.file_uploader("Upload the latest data"):
-        data = pd.read_excel(file)
-        data.columns = data.columns.str.strip()
-        columns = list(data.columns)
-        columns[5] = "Advisory guidance for entry and exit zones"
-        columns[7] = "Equity entry guidance with stop-loss strategy"
-        columns[30] = "Balanced Withdrawal Strategy"
-        columns[32] = "Conservative Withdrawal Approach"
-        data.columns = columns
-        data = data.round(3)
-        st.write(data)
-        if st.button("Update"):
-            db_connection_str = os.environ["DB_CONNECTION_STR"]
-            db_connection = create_engine(db_connection_str)
-
-            engine = create_engine(db_connection_str)
-            with engine.connect() as conn:
-                try:
-                    conn.execute(text("DROP TABLE fact_sheet"))
-                except:
-                    pass
-                with st.spinner("Updating"):
-                    data.to_sql(name = "fact_sheet", con = db_connection)
-                st.write("Data updated in Database")
+        sheet_name = st.selectbox("Select Sheet to update", pd.ExcelFile(file).sheet_names)
+        print(sheet_name)
+        data = pd.read_excel(file, sheet_name=sheet_name)
+        
+        if sheet_name in sheet_to_function_mapping:
+            sheet_to_function_mapping[sheet_name](st, data)
+        # if sheet_name == "Data Source":
+        #     handle_fact_sheet(st, data)
+        # elif sheet_name == "Time & Goal Based":
+        #     handle_time_goal_based(st, data)
+        # elif sheet_name == "PE PBV SIMPLE SCORES":
+        
 
 if __name__ == "__main__":
     main()
