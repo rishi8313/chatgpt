@@ -94,6 +94,11 @@ Debt - Long Duration Fund
 
 6) use exact match for mid cap fund, Nifty fund, gilt fund and long duration fund. 
 
+7) when scheme name is present in the question, 
+ a) strictly include it in the query for approximate matching in lower case, (split the scheme name in different words and match)
+ b) strictly include the type of scheme eg. corporate or baf or mid cap etc. as an AND condition
+ c) Also try for large cap when asked for bluechip category
+ d) Use Balance advantage fund as category in place of BAF
 {question}
 
 """
@@ -212,6 +217,7 @@ out_template = """ ### Tips for Crafting a Human-Readable Response: ###
 - Refrain to provide unnecessary explanations
 - Show in tabular format whenever possible
 - If the response is empty, do not make up the answer, just say no results found.
+- Do not provide summary of ratings or fund ratings explanations
 
 As an expert in crafting prompts for large language models, your task is to enhance the readability of the following response given the query. Present the information in a more human-friendly format by utilizing clear language and bulletpoints for any numerical details. 
 ### Query : ###
@@ -241,16 +247,16 @@ Translated Message:
 IN_PROMPT = PromptTemplate(template=input_prompt, input_variables=["message"])
 
 direct_template = """
-- Use a conversational tone that is easy to comprehend
-- Adjust the calculations according to the query
-- Clearly present any numerical or factual information in bulletpoints, always use Indian currency system
-- seperate the facts by next line character ("\n")
-- encircle headings in bold
-- Refrain to brag about your capability
-- Refrain to provide unnecessary explanations
-- Show in tabular format whenever possible
+you are a Helpful Personal finance planning expert, Answer the following question from best of your knowledge
+
+Remember:
+The output will be show to the end consumer and hence they are not be interested in calculations but final results
+Eg. if the question is related to answer about the SIP amount, only provide the final value and do not show the calculations.
+Also, do not show recommendation or next steps. Answer should be to the point.
 
 {query}
+
+Helpful Answer :
 """
 
 DIRECT_PROMPT = PromptTemplate(template = direct_template, input_variables=["query"])

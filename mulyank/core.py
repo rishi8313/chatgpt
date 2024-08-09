@@ -85,8 +85,9 @@ class OutputFormatter:
 class QueryHandler:
 
     def __init__(self, api_key, db_loc = "sqlite:///db/mulyank.db"):
-        llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0, max_tokens=256)
+        llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18",api_key=api_key, temperature=0, max_tokens=40)
         self.llm = ChatOpenAI(model = "gpt-4o-mini-2024-07-18", api_key=api_key, temperature=0, max_tokens=256)
+        self.llm_gpt4o = ChatOpenAI(model = "gpt-4o",api_key=api_key, temperature=0)
         self.translate_chain = LLMChain(llm = llm, prompt=IN_PROMPT)
         query_bldr = QueryBuilder()
         self.db_connection_str = db_loc
@@ -124,7 +125,7 @@ class QueryHandler:
             if type(query) == str:
                 response = self.query_mapping[destination_key]
             elif type(query) == tuple and query[0] == "direct":
-                direct_chain = LLMChain(llm = self.llm, prompt=DIRECT_PROMPT)
+                direct_chain = LLMChain(llm = self.llm_gpt4o, prompt=DIRECT_PROMPT)
                 response = direct_chain.invoke(input = {"query" : user_message})["text"]
             elif type(query) == tuple:
                 sql_chain_input = query[1].format(question = user_message)
@@ -153,6 +154,7 @@ class QueryHandler:
                         response = OutputFormatter(destination_key).format(response)
                         response = self.output_chain.invoke(input = {"query" : user_message, "response" : response})["text"]
                     else:
+                        print(response)
                         response = self.output_chain.invoke(input = {"query" : user_message, "response" : str(response)})["text"]
         except:
            response = "I am sorry, I couldn't respond to this question at this time. Stay Tuned for MULYANKAN GPT updates."

@@ -61,6 +61,21 @@
             "description" : "What is subscription cost/pricing/plan ? How much I have to pay for subscription ?"
         },
         {
+            "name" : "STP_tenure",
+            "kind" : "Predefined",
+            "description" : "What should be my STP tenure ? Kitne samay ki stp karu ? How many month shall I do stp ? Kab tak stp karu ? For how many month shall I run stp ? When shall I start or stop stp ? "
+        },
+        {
+            "name" : "Basis_of_recommendation",
+            "kind" : "Predefined",
+            "description" : "On what basis you recommend fund ? What are the parameters you use for green , yellow , red choosing funds ? What factors do you consider for choosing fund ? How do you select fund ? Aap fund kaise choose karte ho ? What are reason behind choosing fund ? what is th logic / rationale behing selecting fund ? what is your fund selection methodology ? how do you choose fund ?"
+        },
+        {
+            "name" : "style_selection_method",
+            "kind" : "Predefined",
+            "description" : "How you do STYLE/Factor selection ? What is your methodolgy for STYLE / FACTOR selection ? What is logic behind selecting STYE ? How do you choose Style ? "
+        },
+        {
             "name": "market_scenario",
             "kind": "prompt_helper",
             "description": "Answers question regarding current market outlook/scenario, equity market, current equity scores in a year and broader inference from scores, e.g. How is the market condition? market kesa h? What are the scores?"
@@ -329,6 +344,11 @@
             "name" :"past_tactical_calls",
             "kind" :"direct_to_sql_chain",
             "description":"What was your past tactical call? What was your past Sectoral call ? What was your past Global call ? What is your performance of past tactical call ? What is your performance of past Sectoral call ? What is your performance of past global alerts ?"
+        },
+        {
+            "name": "fund_type_help",
+            "kind" : "direct_to_sql_chain",
+            "description":"I have invested in dsp mid cap , hdfc small cap and axis bluechip ? Please review /  Please suggest whether these are good funds or not ? I have invested in ICICI balanced advantage , hdfc baf and kotak baf ? Please review /  Please suggest whether these are good funds or not ? I have invested in dsp corporate bond and nippon corporate bond ? What is your view on it ? Please review my funds ? Are my funds good or bad ?"
         }
     ]
 }
