@@ -146,9 +146,9 @@
             "description": "Right - now markets are Over-valued , Fairly or Under-valued ? Is the market currently overvalued or undervalued?"
         },
         {
-            "name": "backtesting_broader_guidance",
+            "name": "backtesting_broader_guidance_equity",
             "kind": "prompt_helper",
-            "description": "What is your performance based on broader guidance till now / What is your back-testing result says / What is the outcome if we follow your broader guidance ?"
+            "description": "e.g. What is your performance based on broader guidance till now? What is your back-testing result says? What is the outcome if we follow your broader guidance? What performance have you achieved if I followed your equity guidance?"
         },
         {
             "name": "debt_allocation_back_testing",
@@ -173,7 +173,7 @@
         {
             "name": "back_testing_no_profile",
             "kind": "Predefined",
-            "description": "What is performance / result / back testing of no profile if allocation was implemented as per you / system ?"
+            "description": "Not for equity guidance, only for \"No Profile\" - What is performance / result / back testing of \"no profile\" if allocation was implemented as per you / system ?"
         },
         {
             "name": "allocation_reco_no_investor_profile",

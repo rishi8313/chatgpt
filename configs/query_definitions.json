@@ -131,7 +131,7 @@
         ],
         "table_name": "fact_sheet"
     },
-    "backtesting_broader_guidance": {
+    "backtesting_broader_guidance_equity": {
         "prefix": "concatenate the unique non empty value of",
         "columns": [
             "Performance For Broader Inference for  Limited Action Advisor"

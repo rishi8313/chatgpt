@@ -329,7 +329,7 @@ OUTPUT_TEMPLATES = {
     "market_fall_undervalue":[market_fall_undervalue_ot,None],
     "market_up_overvalue":[market_up_overvalue_ot, None],
     "current_market_value":[current_market_value_ot,None],
-    "backtesting_broader_guidance":[backtesting_broader_guidance_ot, "concat"],
+    "backtesting_broader_guidance_equity":[backtesting_broader_guidance_ot, "concat"],
     "debt_allocation_back_testing":[debt_allocation_back_testing_ot,"all"],
     "mid_small_cap_current_view":[mid_small_cap_current_view_ot,None],
     "category_selection_under_debt":[category_selection_under_debt_ot, None],
