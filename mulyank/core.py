@@ -42,6 +42,11 @@ class OutputFormatter:
         if agg == "convert_to_perc":
             return (res[0], res[1], float(res[2])*100, 
                     float(res[3])*100, res[4], res[5])
+        elif agg == "divide_by_10000":
+            out = []
+            for val in res:
+                out.append(float(val)/10000)
+            return tuple(out)
         elif agg == "multiply_100":
             return (res[0], float(res[1])*100, res[2], res[3])
         elif agg == "add":

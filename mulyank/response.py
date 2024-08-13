@@ -169,12 +169,14 @@ Out of 100 rs., One should keep {N} rs in Equity. This {N} rs should go in {V} n
 input_variables=["N","V","W"]
 )
 aggressive_investor_allocation_reco_ot = PromptTemplate(
-    template="""
-Out of 100 rs For Aggressive All In investor, one should keep {A} Rs in Equity. 
-Out of 100 rs For Aggressive All IN & All OUT investor, one should keep {B} Rs in Equity.
-Out of 100 rs For Aggressive with Regular Re-balancing investor, one should keep {C} Rs in Equity.
+    template="""Mention all the 3 points in table
+1) Out of 100 rs For Aggressive All In investor, one should keep {A} Rs in Equity. 
+2) Out of 100 rs For Aggressive All IN & All OUT investor, one should keep {B} Rs in Equity.
+3) Out of 100 rs For Aggressive with Regular Re-balancing investor, one should keep {C} Rs in Equity.
 Equity Money for Aggressive profile will go in {D}.
 Debt Money should go in {E}.
+
+Calculate following breakdown based on the amount mentioned in the question.
 Large , Mid and Small cap allocation will be {F}, {G} , {H} respectively out of 100 rs in Equity.
     """, 
     input_variables=["A","B","C","D","E","F","G","H"]
@@ -260,12 +262,12 @@ debt_investment_18_ot = PromptTemplate(
 )
 
 SIP_1_6_ot = PromptTemplate(
-    template="For 10000 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In BAF Fund. {E} Rs. In ESF Fund.",
+    template="For every 1 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In BAF Fund. {E} Rs. In ESF Fund.",
     input_variables=["B","C","D","E"]
 )
 
 SIP_6_11_12_ot = PromptTemplate(
-    template="For 10000 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In Mid Cap Fund. {E} Rs. In Small Cap Fund.",
+    template="For every 1 Rs. SIP break-up. Your money sould go : {B} Rs. In Flexi Cap fund.   {C} Rs. In Multi Cap  FUND. {D} Rs. In Mid Cap Fund. {E} Rs. In Small Cap Fund.",
     input_variables=["B","C","D","E"]
 )
 
@@ -348,9 +350,9 @@ OUTPUT_TEMPLATES = {
     "debt_investment_3_6":[debt_investment_3_6_ot,None],
     "debt_investment_6_18":[debt_investment_6_18_ot,None],
     "debt_investment_18+":[debt_investment_18_ot,None],
-    "SIP_1_6" : [SIP_1_6_ot, None],
-    "SIP_6_11" : [SIP_6_11_12_ot, None],
-    "SIP_12+" : [SIP_6_11_12_ot, None],
+    "SIP_1_6" : [SIP_1_6_ot, "divide_by_10000"],
+    "SIP_6_11" : [SIP_6_11_12_ot, "divide_by_10000"],
+    "SIP_12+" : [SIP_6_11_12_ot, "divide_by_10000"],
     "pe_pbv_scores" : [pe_pbv_scores_ot, None],
     "domestic_sectorial_ranking" : [domestic_sectorial_ranking_ot, "all"],
     "style_factor_funds" : [style_factor_funds_ot, "all"],
